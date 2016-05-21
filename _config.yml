@@ -33,6 +33,3 @@ exclude: ["README.md", "README.html","Gemfile"]
 # Build settings
 highlighter: rouge
 markdown: kramdown
-
-gems:
-  - emoji_for_jekyll
