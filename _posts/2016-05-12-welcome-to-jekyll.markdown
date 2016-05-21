@@ -8,7 +8,7 @@ category: tools
 Yep, I recreated the site and switched to **Jekyll**. As I was already using *Markdown* to format my posts the porting did not take that much time. Jekyll is nice to build static websites, fits perfect for my blog.
 Also it has less attack vectors as a dynamic website because nothing get's intepreted, for example from PHP. No database connection, no GET variables, nothing.
 
-GitHub is also beeing used to backup my website and commit changes, my server takes them then and Jekyll rebuilds the website. Awesome! :smile:
+GitHub is also beeing used to backup my website and commit changes, my server takes them then and Jekyll rebuilds the website. Awesome!
 
 A few bugs are still present, like the fact that emojis are not parsed. I hope that get's resolved soon.
 
