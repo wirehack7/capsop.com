@@ -13,4 +13,4 @@ GitHub is also beeing used to backup my website and commit changes, my server ta
  
 A few bugs are still present, like the fact that emojis are not parsed. I hope that get's resolved soon.
  
-So, happy browsing on my blog and enjoy the new speed! :smile:
+So, happy browsing on my blog and enjoy the new speed! :+1:
