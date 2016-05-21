@@ -6,9 +6,10 @@ description: >
 
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://beta.capsop.com" # the base hostname & protocol for your site
+timezone: "Europe/Berlin"
 
 author:
-  fullname: Markus R.
+  fullname: wirehack7
   # googleplus: https://www.google.com/+MotaquillahMaddane
   github: wirehack7
   twitter: wirehack7
@@ -24,5 +25,5 @@ styles: [agate, androidstudio, arta, asceti, atelier-cave.dark, atelier-cave.lig
 exclude: ["README.md", "README.html"]
 
 # Build settings
-highlighter: null
+highlighter: rouge
 markdown: kramdown
