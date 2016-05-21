@@ -17,7 +17,7 @@ A 0day PHP exploit script has to be run as root? What? Okay, okay. Let's run as 
 
 
 
-``` php
+```php
                   ____.----.
         ____.----'          \
         \                    \
