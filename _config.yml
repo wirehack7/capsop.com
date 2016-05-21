@@ -28,3 +28,5 @@ exclude: ["README.md", "README.html"]
 # Build settings
 highlighter: rouge
 markdown: kramdown
+
+gems: ["emoji_for_jekyll","jekyll-minifier"]
