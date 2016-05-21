@@ -7,7 +7,7 @@ description: >
 
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://capsop.com" # the base hostname & protocol for your site
-timezone: "CEST"
+timezone: "Europe/Berlin"
 
 author:
   fullname: wirehack7
@@ -33,3 +33,9 @@ exclude: ["README.md", "README.html","Gemfile"]
 # Build settings
 highlighter: rouge
 markdown: kramdown
+
+gems: 
+    - jekyll-minifier
+
+jekyll-minifier:
+  exclude: 'feed.xml'
