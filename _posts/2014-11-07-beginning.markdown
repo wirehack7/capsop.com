@@ -3,7 +3,7 @@ layout: post
 title:  "A new beginning"
 subtitle: "Let's start the site freshly"
 date:   2014-11-07 03:41:23
-category: itsec
+category: personal
 ---
 
 Today I am starting my new blog. I had to reinstall the server because of a OS fail and had no backup from my old blog. So I have to start again from the beginning. This time with an own, hand crafted design. I hope you are enyoing it.
