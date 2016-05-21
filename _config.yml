@@ -34,8 +34,5 @@ exclude: ["README.md", "README.html","Gemfile"]
 highlighter: rouge
 markdown: kramdown
 
-gems: 
-    - jekyll-minifier
-
-jekyll-minifier:
-  exclude: 'feed.xml'
+gems:
+  - jemoji
