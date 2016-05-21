@@ -29,7 +29,9 @@ exclude: ["README.md", "README.html"]
 highlighter: rouge
 markdown: kramdown
 
-gems: ["emoji_for_jekyll","jekyll-minifier"]
+gems: 
+    - emoji_for_jekyll
+    - jekyll-minifier
 
 jekyll-minifier:
   exclude: 'rss.xml'
