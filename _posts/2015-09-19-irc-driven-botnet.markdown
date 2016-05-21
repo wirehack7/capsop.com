@@ -3,7 +3,7 @@ layout: post
 title:  "IRC driven Botnet"
 subtitle: "Analysis and shutdown of a botnet ran by IRC protocol"
 date:   2015-09-19 14:00:01
-categories: ["IT-Security"]
+category: itsec
 emoji: true
 ---
 

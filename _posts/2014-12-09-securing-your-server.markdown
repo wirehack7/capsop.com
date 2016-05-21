@@ -3,7 +3,7 @@ layout: post
 title:  "Securing your server"
 subtitle: "Convert your Linux server to a fort"
 date:   2014-12-09 23:34:01
-categories: [Servers]
+category: servers
 ---
 
 In this post I will show you a few ways to secure your Debian (or Ubuntu) based server. This contains to secure your SSH connection, protecting against brute force and protecting against port scans. Also I will show you how to easily use iptables via an additional package. This is not the holy grail of security, there are really more things you might do. Like using **chroot** and other solutions to make your system secure. This article just shows you how to secure your *SSH* login and how to avoid brute forcing and a few port scans.
