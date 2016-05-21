@@ -86,7 +86,7 @@ Okay, it just saved the output of the website to a file, the website had this sc
                 <?php echo "this is just a test"; ?>
         </body>
         </html>
-`​``
+```
 
 I added **PHP** code to it in case it does some magic to it (remember, the Google Dork is *.php*).
 Now I am a bit frustaded, no cool kiddo magic? No server bashing?
@@ -104,8 +104,7 @@ Variable *$header* is just the fancy ASCII stuff at the beginning, so let's look
 *var_dump($bytes)* gives me the way how the encoded string will be processed, so let's add an *echo* at the right place:
 
 ```php
-        
-	array (size=4)
+     array (size=4)
           0 => string 'passthru' (length=8)
           1 => string 'base64_decode' (length=13)
           2 => string 'gzuncompress' (length=12)
