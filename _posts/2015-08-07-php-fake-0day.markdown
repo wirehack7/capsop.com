@@ -15,8 +15,6 @@ When running it it does that:
 
 A 0day PHP exploit script has to be run as root? What? Okay, okay. Let's run as root:
 
-
-
 ```php
                   ____.----.
         ____.----'          \
@@ -54,6 +52,7 @@ A 0day PHP exploit script has to be run as root? What? Okay, okay. Let's run as 
      # Tested on: Windows, Linux
      # CVE: 0day (No CVE)
      # Usage: php 0day.php <website> <filename>[0m
+```
 
 Aha, so this is a 0day and we just have to run it against any website. No hint what the script actually should do to that remote website. So let's run it:
 
