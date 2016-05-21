@@ -732,8 +732,8 @@ As we also can see the bot itself is really poorly coded, for me it looks like a
         02:44 CTCP mIRC reply from snoopgirl: v6.17 Khaled Mardam-Bey
 
 
+**Big thanks to [@unixfreaxjp](https://twitter.com/unixfreaxjp) for his never ending support.**  
+*Non Misericordias Super Iniquos*  
+
 <blockquote class="twitter-tweet" lang="de"><p lang="en" dir="ltr"><p lang="en" dir="ltr"><a href="https://twitter.com/MalwareMustDie">@MalwareMustDie</a> <a href="https://twitter.com/wirehack7">@wirehack7</a> <a href="https://twitter.com/WhitePacket">@WhitePacket</a> Hulk like when puny moronz feel the pain of <a href="https://twitter.com/hashtag/MalwareMustDie?src=hash">#MalwareMustDie</a> RAAAAAARGHHH!!!! <a href="http://t.co/itai6JNTpc">pic.twitter.com/itai6JNTpc</a></p>&mdash; Hulk Crusader (@Hulk_Crusader) <a href="https://twitter.com/Hulk_Crusader/status/645344109524226048">19. September 2015</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-**Big thanks to [@unixfreaxjp](https://twitter.com/unixfreaxjp) for his never ending support.** *Non Misericordias Super Iniquos*
