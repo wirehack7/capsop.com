@@ -4,7 +4,6 @@ title:  "Lightaidra C&C investigation"
 subtitle: "Investigating an IRC C&C and hunting the botherder"
 date:   2014-05-17 03:41:23
 category: itsec
-permalink: /lightaidra-cc-investigation
 ---
 
 As mentioned on MalwareMustDie, a trojan downloader got in one of my honeypots. It is the Lightaidra one, a simple coded bot to infect machines like routers. It scans networks and tries to login with standard passwords, if successful it downloads a Shell Script which downloads ELF binaries. They are used that the bot connects to some hardcoded IRC servers with hardcoded credentials. The bots can be used then to scan more networks and to DDoS, some TCP attacks are already included.
