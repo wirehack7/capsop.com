@@ -1,5 +1,6 @@
 # Site settings
 title: CapsOp
+name: CapsOp
 description: >
   IT-Security blog of wirehack7. Writing about malware hunting, botnet shutdowns,
   pentesting and securing IT architecture.
