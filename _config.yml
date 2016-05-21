@@ -6,7 +6,7 @@ description: >
   pentesting and securing IT architecture.
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://beta.capsop.com" # the base hostname & protocol for your site
+url: "https://capsop.com" # the base hostname & protocol for your site
 timezone: "Europe/Berlin"
 
 author:
