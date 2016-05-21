@@ -39,4 +39,4 @@ gems:
     - jekyll-minifier
 
 jekyll-minifier:
-  exclude: 'rss.xml'
+  exclude: 'feed.xml'
