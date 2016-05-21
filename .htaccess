@@ -1,2 +1,5 @@
 ErrorDocument 404 /404.html
 ErrorDocument 403 /403.html
+
+RewriteEngine on 
+Redirect /lightaidra-cc-investigation /itsec/2014/05/17/lightaidra-cc-investigation.html
