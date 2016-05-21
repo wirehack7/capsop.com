@@ -35,4 +35,4 @@ highlighter: rouge
 markdown: kramdown
 
 gems:
-  - jemoji
+  - emoji_for_jekyll
