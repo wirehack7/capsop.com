@@ -10,9 +10,21 @@ sitemap:
 </h2>
 
 <div style="text-align:center; margin: 0 auto;">
-	<img src="//i.imgur.com/tutsKID.png">
+	<img src="//i.imgur.com/tutsKID.png" id="Gandalf">
 </div>
 
 
 <!-- Adding the glitch effect -->
 <script> document.getElementsByTagName('body')[0].classList.add('glitch'); </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+<script src="/glitch.js"></script>
+<script>
+$( document ).ready(function() {
+	glitch(document.getElementById("Gandalf"), {
+		amount: 8,
+		complete: function(canvas){
+			// do something with the glitched canvas
+		}
+	});
+});
+</script>
