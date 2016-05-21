@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "A new beginning"
-subtitle: "Let's start the site freshly"
+title:  "Jekyll arrived!"
+subtitle: "Where is Mr Hyde?"
 date:   2016-05-21 18:55:23
 category: personal
 ---
