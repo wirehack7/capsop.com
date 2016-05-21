@@ -33,9 +33,3 @@ exclude: ["README.md", "README.html","Gemfile"]
 # Build settings
 highlighter: rouge
 markdown: kramdown
-
-gems: 
-    - jekyll-minifier
-
-jekyll-minifier:
-  exclude: 'feed.xml'
