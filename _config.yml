@@ -16,7 +16,12 @@ author:
   twitter: wirehack7
   # disqus: your_disqus_forum_shortname
 
+# Analytics settings
 # google_analytics: 'UA-XXXXXXXX-X'
+piwik_url: '//piwik.capsop.com/'
+piwik_id: 1
+piwik_domains: "*.capsop.com"
+piwik_img: "//piwik.capsop.com/piwik.php?idsite=1"
 
 # Syntax highlighting
 highlightstyle: ''
