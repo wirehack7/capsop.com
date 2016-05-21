@@ -3,7 +3,7 @@ layout: post
 title:  "Jekyll arrived"
 subtitle: "Mr Hyde got lost"
 date:   2016-05-21 18:38:40
-category: tools
+category: personal
 ---
 Yep, I recreated the site and switched to **Jekyll**. As I was already using *Markdown* to format my posts the porting did not take that much time. Jekyll is nice to build static websites, fits perfect for my blog.
 Also it has less attack vectors as a dynamic website because nothing get's intepreted, for example from PHP. No database connection, no GET variables, nothing.
