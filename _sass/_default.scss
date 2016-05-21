@@ -304,6 +304,8 @@ strong {
     }
 }
 
-div.content > img.emoji {
+div.content img.emoji {
 	display: inline-block;
+	margin: auto;
+	max-width: auto;
 }
