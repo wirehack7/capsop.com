@@ -17,7 +17,7 @@ A 0day PHP exploit script has to be run as root? What? Okay, okay. Let's run as 
 
 
 
-
+``` php
                   ____.----.
         ____.----'          \
         \                    \
@@ -82,6 +82,7 @@ Okay, it just saved the output of the website to a file, the website had this sc
                 <?php echo "this is just a test"; ?>
         </body>
         </html>
+`​``
 
 I added **PHP** code to it in case it does some magic to it (remember, the Google Dork is *.php*).
 Now I am a bit frustaded, no cool kiddo magic? No server bashing?
