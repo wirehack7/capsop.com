@@ -169,5 +169,4 @@ Okay, so we have 3 more directories there, let's get to ```/bin```.
 Interesting, a login form. Shall we penetrate it? But wait, lets use another program to dig into the directories.
 
 
-[^1]:
-Uses Python, you will need it.
+[^1]: Uses Python, you will need it.
