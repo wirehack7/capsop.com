@@ -12,6 +12,7 @@ I will focus in this post on the vulnerable machine **Acid Reloaded**, as it was
 
 ![](https://i.imgur.com/WR44iSE.png)
 
+Table of contents:
 * Will be replaced with the ToC, excluding the "Contents" header
 {:toc}
 
@@ -138,7 +139,7 @@ Let's open it in a browser!
 
 ![](https://i.imgur.com/D4LjjAO.png)
 
-Okay, we shall use our brain. Well, we are already doing, so we are on a good way I assume. The image is in ```/images/```, but this gives a 403 Forbidden error. We have to keep on that trail and gain more information. to do this we should bruteforce the directory of the webserver. I am using [dirsearch](https://github.com/maurosoria/dirsearch) here, it's a nice Python based app to scan webservers. 
+Okay, we shall use our brain. Well, we are already doing, so we are on a good way I assume. The image is in ```/images/```, but this gives a 403 Forbidden error. We have to keep on that trail and gain more information. to do this we should bruteforce the directory of the webserver. I am using [dirsearch](https://github.com/maurosoria/dirsearch)[^1] here, it's a nice Python based app to scan webservers. 
 
 	root@kali:~/dirsearch# ./dirsearch.py -u "http://192.168.1.100:33447/" -e php,js -x 403
 	
@@ -166,3 +167,7 @@ Okay, so we have 3 more directories there, let's get to ```/bin```.
 ![](https://i.imgur.com/FFXymlZ.png)
 
 Interesting, a login form. Shall we penetrate it? But wait, lets use another program to dig into the directories.
+
+
+[^1]:
+Uses Python, you will need it.
