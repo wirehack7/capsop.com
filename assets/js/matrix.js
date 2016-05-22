@@ -1,5 +1,6 @@
 function matrix(){
-		
+	document.body.style.overflow = "hidden";
+	
 	var c = document.getElementById("c");
 	var ctx = c.getContext("2d");
 
