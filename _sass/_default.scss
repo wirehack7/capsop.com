@@ -322,4 +322,8 @@ pre {
 
 canvas#c {
 	z-index:9999;
+	display:block;
+	position:absolute;
+	top:0px;
+	left:0px;
 }
