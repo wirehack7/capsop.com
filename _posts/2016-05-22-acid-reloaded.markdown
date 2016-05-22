@@ -12,6 +12,7 @@ I will focus in this post on the vulnerable machine **Acid Reloaded**, as it was
 
 ![](https://i.imgur.com/WR44iSE.png)
 
+* Will be replaced with the ToC, excluding the "Contents" header
 {:toc}
 
 ## Setting it up
