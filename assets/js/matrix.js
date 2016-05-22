@@ -1,4 +1,6 @@
 function matrix(){
+	var g = document.createElement('canvas');
+	g.id = 'c';
 	
 	var c = document.getElementById("c");
 	var ctx = c.getContext("2d");
@@ -53,7 +55,6 @@ function matrix(){
 			drops[i]++;
 		}
 	}
-	var g = document.createElement('canvas');
-	g.id = 'c';
+	
 	setInterval(draw, 55);
 }
