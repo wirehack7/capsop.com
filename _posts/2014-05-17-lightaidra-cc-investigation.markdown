@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Lightaidra C&C investigation"
-subtitle: "Investigating an IRC C&C and hunting the botherder"
+title:  "Lightaidra C&amp;C investigation"
+subtitle: "Investigating an IRC C&amp;C and hunting the botherder"
 date:   2014-05-17 03:41:23
 category: itsec
 ---
@@ -338,7 +338,7 @@ And they did an attack on IP **xxx.xxx.xxx.xxx**.
 
 Getting infos of a guy called **styx** is pretty useless, this is a high used alias, so let's focus on **Zendran**:
 
-I found a YouTube Channel of a CoD Hacker: [www.youtube.com/channel/UCtgngnplkMmcvWqHhyudpqA](www.youtube.com/channel/UCtgngnplkMmcvWqHhyudpqA)
+I found a YouTube Channel of a CoD Hacker: [www.youtube.com/channel/UCtgngnplkMmcvWqHhyudpqA](https://www.youtube.com/channel/UCtgngnplkMmcvWqHhyudpqA)
 Also I found posts of complaining about a game hacker called Zendran:
 [XBox Forum Thread](http://forums.xbox.com/xbox_forums/general_discussion/f/2176/t/1169547.aspx)
 
@@ -449,7 +449,7 @@ Paste:
         $iaddr));}
 
 This just sends messages with random size to the target, a really simple DoS tool.
-[www.tutorialspoint.com/perl/perl_send.htm](www.tutorialspoint.com/perl/perl_send.htm)
+[www.tutorialspoint.com/perl/perl_send.htm](http://www.tutorialspoint.com/perl/perl_send.htm)
 
 Usage is pretty simple, first argument is the IP, second the port (can be left blank for random port), 3rd the message size (can be left blank) and the 4th for the time (how long this will be run, can be left blank). Running it:
 

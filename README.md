@@ -1,5 +1,5 @@
 # Capsop.com
-Blog site for capsop.com driven by Jekyll.
+Blog site for capsop.com driven by Jekyll. test
 
 ## Install
 On Debian styled machines run these commands to install Jekyll:
@@ -36,3 +36,5 @@ This site uses several plugins. Here is a list:
 	- jekyll-minifier
 	- rssgenerator
 	- archivepage
+	- 
+test

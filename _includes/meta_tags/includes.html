@@ -1,1 +1,25 @@
 <script src="/assets/js/matrix.js"></script>
+<script src="/assets/js/jquery-3.1.0.min.js"></script>
+<script src="/assets/js/simple-lightbox.min.js"></script>
+<link rel="stylesheet" href="/assets/js/simplelightbox.min.css">
+<script>
+	$(document).ready(function() {
+		$('div.content p img').not(".emoji").each(function ()
+		{
+			var currentImage = $(this);
+			currentImage.wrap($('<a>',{
+				href: currentImage.attr("src"),
+				class: 'lightbox'
+			}));
+		});
+		lightbox = $('a.lightbox').simpleLightbox();
+	});
+</script>
+
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"dark-top"};
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
+<!-- End Cookie Consent plugin -->
