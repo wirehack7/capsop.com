@@ -20,6 +20,8 @@ Hier ist eine Liste von komprimitierten Mailservern:
 
 ![](https://i.imgur.com/Mt2FsGB.jpg)
 
+![](https://i.imgur.com/DGcGIY3.jpg)
+
 Diese Methode ist dahingehend beachtlich da hierbei weitere Ebenen zur Verschleierung benutzt werden. Auch dass diese Attacke derzeit nur dazu dient Daten zu sammeln.
 
 Für weitere technische Details empfehle ich den erwähnten Post durchzulesen.
