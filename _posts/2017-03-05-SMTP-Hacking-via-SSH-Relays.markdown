@@ -1,24 +1,36 @@
 ---
 layout: post
-title:  "SMTP Hacking via SSH Relays"
+title:  "SMTP Hacking via SSH TCP Forwarding Attacken"
 subtitle: "Neue Kampagne um Mailserver zu kompromitieren"
 categories: [itsec,German,MalwareMustDie]
 typora-copy-images-to: ipic
 ---
 
-Wie bereits in [diesem Post](http://blog.malwaremustdie.org/2017/02/mmd-0062-2017-ssh-direct-tcp-forward-attack.html) von **MalwareMustDie** erwähnt werden derzeit vermehrt *SSH-Server* angegriffen um diese als Relay für weitere Angriffe, wie auf SMTP, zu verwenden. Zum besseren Verständnis dient das nachfolgende Bild des Schemas:
+Wie bereits in [diesem Post](http://blog.malwaremustdie.org/2017/02/mmd-0062-2017-ssh-direct-tcp-forward-attack.html) (**[MMD-0062-2017 - Credential harvesting by SSH Direct TCP Forward attack via IoT botnet](http://blog.malwaremustdie.org/2017/02/mmd-0062-2017-ssh-direct-tcp-forward-attack.html)**) von **MalwareMustDie** erwähnt werden derzeit vermehrt *SSH-Server* angegriffen um diese als Relay für weitere Angriffe, wie auf SMTP, zu verwenden. Zum besseren Verständnis dient das nachfolgende Bild des Schemas:
 
-![Angriffsschema](https://ww4.sinaimg.cn/large/006tKfTcgy1fdc7ds1id9j310d0la75p.jpg)
+![Angriffsschema](https://i.imgur.com/8BhISBS.png)
 
 Zu sehen ist wie *SSH* angegriffen wird, welche wiederum *IoT* Geräte (darunter Kameras und Babyphones) angreifen. Diese Geräte greifen dann Server an um weitere Daten zu erhalten. Hierbei werden Listen mit Logindaten verwendet, daher werden meist schlecht abgesicherte Server komprimitiert, jedoch erscheinen diese im weiteren Verlauf dann als Angreifer.
 
 Die *SMTP* Server werden jedoch nach dem erfolgreichen "Hack" nicht zum Spamversand benutzt, sondern es werden weitere Daten abgegriffen. Zum Beispiel im Bezug des Kreditkartenbetrugs ("Carding"). Die gestohlenen Daten dienen auch dazu die Logindaten für das Brute Forcing zu erweitern.
+
+<iframe src="https://www.youtube.com/embed/H6A-lpn2cdY?rel=0&amp;controls=0&amp;showinfo=0?ecver=1" allowfullscreen="" width="600" height="338" frameborder="0"></iframe>
+
+Hier ist eine Liste von komprimitierten Mailservern:
+
+![](https://i.imgur.com/Mt2FsGB.jpg)
 
 Diese Methode ist dahingehend beachtlich da hierbei weitere Ebenen zur Verschleierung benutzt werden. Auch dass diese Attacke derzeit nur dazu dient Daten zu sammeln.
 
 Für weitere technische Details empfehle ich den erwähnten Post durchzulesen.
 
 Dieser Post dient hauptsächlich dazu auf diese Attacke aufmerksam zu machen und die bereits kompromitierten Server in Deutschland. nachfolgend ist [eine Liste](https://gist.github.com/unixfreaxjp/2def00d658ce5db948f6f790606aa0bc) welche am Freitag, 03.03.2017, erstellt wurde. Ich bitte darum die Betreiber zu warnen/kontaktieren und weitere erforderlichen Schritte zu tätigen.
+
+Hier ist ein Screenshot in welchem man sieht dass deutsche Mailserver ebenso betroffen sind:
+
+![](https://i.imgur.com/pOXMlZS.jpg)
+
+Das [gesamte Repository](https://github.com/unixfreaxjp/MMD-0062-2017) enthält weitere Details von angreifenden und angegriffenen Zielen.
 
 ```
 109.199.184.204 | nd4.ccnst.de. |197524 | 109.199.160.0/19 | CCNST | DE | ccnst.de | CCNST Christof Englmeier e.K.
@@ -387,3 +399,4 @@ Dieser Post dient hauptsächlich dazu auf diese Attacke aufmerksam zu machen und
 95.100.46.254 | a95-100-46-254.deploy.akamaitechnologies.com. |1273 | 95.100.32.0/20 | CW | EU | akamai.com | Akamai Technologies
 [eof]
 ```
+![](https://i.imgur.com/XF44ulV.jpg)
