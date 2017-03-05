@@ -3,12 +3,18 @@
 
 - slug: productivity
   name: Productivity
-  
+
 - slug: itsec
   name: IT-Security
-  
+
 - slug: servers
   name: Servers
-  
+
 - slug: personal
   name: Personal
+
+- slug: mmd
+  name: MalwareMustDie
+
+- slug: german
+  name: German
