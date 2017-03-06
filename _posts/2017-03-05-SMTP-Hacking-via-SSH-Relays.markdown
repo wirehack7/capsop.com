@@ -6,6 +6,8 @@ categories: [itsec,German,MalwareMustDie]
 typora-copy-images-to: ipic
 ---
 
+**EDIT: Sollten Sie von einer Behörde oder einem anderen Sicherheitsorgan sein so kontaktieren Sie mich, soweit möglich, über meinen Twitter Account: @wirehack7 Hier können wir uns auf weitere Kommunikationswege einigen. Derzeit ist die Datenmenge der gesamten Logs bei ca 5 TB.**
+
 Wie bereits in [diesem Post](http://blog.malwaremustdie.org/2017/02/mmd-0062-2017-ssh-direct-tcp-forward-attack.html) (**[MMD-0062-2017 - Credential harvesting by SSH Direct TCP Forward attack via IoT botnet](http://blog.malwaremustdie.org/2017/02/mmd-0062-2017-ssh-direct-tcp-forward-attack.html)**) von **MalwareMustDie** erwähnt werden derzeit vermehrt *SSH-Server* angegriffen um diese als Relay für weitere Angriffe, wie auf SMTP, zu verwenden. Zum besseren Verständnis dient das nachfolgende Bild des Schemas:
 
 ![Angriffsschema](https://i.imgur.com/8BhISBS.png)
