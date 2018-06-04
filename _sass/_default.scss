@@ -77,7 +77,7 @@ blockquote {
   margin-left: 50px;
   padding-left: 15px;
   border-left: 3px solid #ccc;
-} 
+}
 
 strong {
     color: $iron;
@@ -95,6 +95,11 @@ strong {
 
 .navigation {
     float:left;
+}
+
+.htb {
+  text-align: right;
+  margin-top: 5px;
 }
 
 .logo {
@@ -331,7 +336,7 @@ div.content img.emoji {
 	max-width: auto;
 }
 
-/* Browser specific (not valid) styles to make preformatted text wrap */		
+/* Browser specific (not valid) styles to make preformatted text wrap */
 
 pre {
  white-space: pre-wrap;       /* css-3 */

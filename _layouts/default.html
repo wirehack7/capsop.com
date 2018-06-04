@@ -3,7 +3,7 @@
     <head>
         {% include meta_tags/base.html %}
         {% include meta_tags/sharing.html %}
-		{% include meta_tags/includes.html %}
+		    {% include meta_tags/includes.html %}
 
         {% include externals/styling.html %}
     </head>
@@ -18,16 +18,8 @@
         {% include externals/scripting.html %}
         {% include externals/google_analytics.html %}
 		{% include externals/piwik.html %}
-		
+
 		<canvas id="c"></canvas>
-		
-		<script type="text/javascript">
-    window.smartlook||(function(d) {
-    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-    var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
-    c.charset='utf-8';c.src='//rec.smartlook.com/recorder.js';h.appendChild(c);
-    })(document);
-    smartlook('init', '2be162ac2d2f4559479b40fc7bab49b188dc44d7');
-</script>
+
     </body>
 </html>
