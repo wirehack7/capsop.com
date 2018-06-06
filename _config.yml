@@ -15,7 +15,7 @@ author:
   # googleplus: https://www.google.com/+MotaquillahMaddane
   github: wirehack7
   twitter: wirehack7
-  disqus: capsop
+  # disqus: capsop
 
 # Analytics settings
 # google_analytics: 'UA-XXXXXXXX-X'
@@ -44,6 +44,6 @@ gems:
   - jekyll-sitemap
   - jemoji
   - jekyll-mentions
-  
+
 jekyll-mentions:
   base_url: https://twitter.com
