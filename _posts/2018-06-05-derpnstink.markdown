@@ -617,7 +617,11 @@ ftp
 mrderp
 ```
 
-Hmm, `stinky`, `unclestinky`. I hardly guess that's the same guy. When I try to login via *SSH* with `stinky:wedgie57` I only get ` stinky@derpnstink.local: Permission denied (publickey). `. We don't have one...  
+Hmm, `stinky`, `unclestinky`. I hardly guess that's the same guy. When I try to login via *SSH* with `stinky:wedgie57` I only get 
+
+> stinky@derpnstink.local: Permission denied (publickey).
+
+We don't have one...  
 But! There is the command `su`, with that we are able to switch our identity on the system (terminal based access). When we enter that in our *weevely3* shell it results in an error: `su: must be run from a terminal`. So we need a valid `tty` shell. To check if we are on `tty` just simply enter `tty`:
 ```
 www-data@DeRPnStiNK:/var/www/html/weblog/wp-content/uploads/slideshow-gallery $ tty
