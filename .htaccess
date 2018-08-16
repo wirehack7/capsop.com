@@ -3,3 +3,8 @@ ErrorDocument 403 /403.html
 
 RewriteEngine on 
 RedirectMatch 301 /lightaidra-cc-investigation$ /itsec/2014/05/17/lightaidra-cc-investigation.html$1
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /$ [NC]
+RewriteCond %{REQUEST_FILENAME} .*\.(png|jpg|gif|jpeg|html|htm)$ [NC]
+RewriteRule ^(.*)/$ https://%{HTTP_HOST}/$1 [R=301,L]
