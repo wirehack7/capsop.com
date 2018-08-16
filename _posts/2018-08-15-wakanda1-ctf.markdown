@@ -9,7 +9,9 @@ categories: [itsec,English,CTF,vulnhub]
 
 I created a new ToDo-List for CTF VM's from Vulnhub, you see it here:
 
-<blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">My ToDo :)#Pentesting #challenge <br>All downloadable at @VulnHub pic.twitter.com/pjIgn5LImy</p> 𝖒𝖆𝖗𝖐𝖚𝖘 (@wirehack7) 12. August 2018</blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-lang="de"><p lang="en" dir="ltr">My ToDo :)<a href="https://twitter.com/hashtag/Pentesting?src=hash&amp;ref_src=twsrc%5Etfw">#Pentesting</a> <a href="https://twitter.com/hashtag/challenge?src=hash&amp;ref_src=twsrc%5Etfw">#challenge</a> <br>All downloadable at <a href="https://twitter.com/VulnHub?ref_src=twsrc%5Etfw">@VulnHub</a> <a href="https://t.co/pjIgn5LImy">pic.twitter.com/pjIgn5LImy</a></p>&mdash; ???????????? (@wirehack7) <a href="https://twitter.com/wirehack7/status/1028628836043448320?ref_src=twsrc%5Etfw">12. August 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 So I solved [Wakanda 1](https://www.vulnhub.com/entry/wakanda-1,251/) and I want to share with you my walkthrough. Let's start!
 
