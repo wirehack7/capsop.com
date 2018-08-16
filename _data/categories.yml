@@ -18,3 +18,11 @@
 
 - slug: german
   name: German
+  
+- slug: CTF
+  name: Capture The Flag
+  
+- slug: vulnhub
+  name: Vulnhub
+
+
