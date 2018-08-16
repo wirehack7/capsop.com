@@ -84,10 +84,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport (= 5.2.1)
   jekyll-feed
   jekyll-mentions
   jekyll-sitemap
-  jemoji
+  jemoji (= 0.10.1)
 
 BUNDLED WITH
    1.16.3
