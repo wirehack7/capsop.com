@@ -2,7 +2,6 @@
 <script src="{{ "/assets/js/jquery-3.1.0.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/assets/js/simple-lightbox.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/assets/js/videos.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/assets/js/jquery.scrollUp.min.js" | prepend: site.baseurl }}"></script>
 <link rel="stylesheet" href="{{ "/assets/js/simplelightbox.min.css" | prepend: site.baseurl }}">
 <script>
 	$(document).ready(function() {
@@ -16,12 +15,22 @@
 		});
 		lightbox = $('a.lightbox').simpleLightbox();
 		
+		// ===== Scroll to Top ==== 
+		$(window).scroll(function() {
+			if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+				$('#return-to-top').fadeIn(200);    // Fade in the arrow
+			} else {
+				$('#return-to-top').fadeOut(200);   // Else fade out the arrow
+			}
+		});
+		$('#return-to-top').click(function() {      // When arrow is clicked
+			$('body,html').animate({
+				scrollTop : 0                       // Scroll to top of body
+			}, 500);
+		});
+		
 		
 	});
-	
-	$(function () {
-			$.scrollUp();
-		});
 </script>
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
