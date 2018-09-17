@@ -347,7 +347,8 @@ Thankfully not stripped :grin:. We see where main() starts, imports, strings, in
 
 Here is main:
 
-```assembly
+```
+
             ;-- main:
 ┌ (fcn) sym.main 307
 │   sym.main (int argc, char **argv, char **envp);
