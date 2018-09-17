@@ -1,7 +1,9 @@
+---
 layout: post
 title:  "Pinky's Palace siege"
 subtitle: "inviting yourself to a party of pinky"
 categories: [itsec,English,CTF,vulnhub]
+---
 
 ![](https://i.imgur.com/jwTfV6K.png)
 
