@@ -350,9 +350,10 @@ pre {
 canvas#c {
 	z-index:9999;
 	display:block;
-	position:absolute;
+	position:fixed;
 	top:0px;
 	left:0px;
+	pointer-events:none; /* JS flips this to auto while the rain runs */
 }
 
 div.footnotes {
