@@ -32,6 +32,16 @@
 (function () {
   function track(name, data) { if (window.umami) window.umami.track(name, data); }
 
+  // Session property: screen size (waits for umami to load)
+  (function () {
+    var props = { screen_size: screen.width + 'x' + screen.height };
+    var tries = 0;
+    (function send() {
+      if (window.umami && window.umami.identify) { window.umami.identify(props); return; }
+      if (tries++ < 20) setTimeout(send, 500);
+    })();
+  })();
+
   document.addEventListener('DOMContentLoaded', function () {
     var here = location.hostname.replace(/^www\./, '');
     // Outbound link clicks -> "outbound"
