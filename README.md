@@ -1,40 +1,31 @@
 # Capsop.com
-Blog site for capsop.com driven by Jekyll. test
+Blog site for capsop.com driven by Jekyll.
 
 ## Install
-On Debian styled machines run these commands to install Jekyll:
 
-	sudo apt-get update
-	sudo apt-get upgrade
-	sudo apt-get install ruby-full
-	gem install jekyll
+Needs Ruby 3.1+ and Bundler.
+
+	sudo apt-get install ruby-full build-essential
 	gem install bundler
 
-Then clone this repository to your machine:
+Then clone and build:
 
 	git clone https://github.com/wirehack7/capsop.com.git
-
-Build the website:
-
 	cd capsop.com
-	bundler install
-	jekyll build
+	bundle install
+	bundle exec jekyll build
 
-The site will be built into ```_site```
+The site is built into `_site`.
 
-You can also serve it, so Jekyll notices changes:
+Live preview with rebuild on change:
 
-	jekyll serve
-
-Serve then via HTTP server ```_site``` or create a reverse proxy to the Jekyll port if you use the Jekyll webserver.
+	bundle exec jekyll serve
 
 ## Plugins
 
-This site uses several plugins. Here is a list:
+Managed via the `Gemfile` (`:jekyll_plugins` group):
 
-	- emoji_for_jekyll
-	- jekyll-minifier
-	- rssgenerator
-	- archivepage
-	- 
-*https://mega.nz/#!vGpigQbT!-hOkzsf-Mnp78hMYMBcV3zOaFOB0fR_Z7IQPhkUM1PE*
+	- jekyll-sitemap
+	- jekyll-feed
+	- jemoji         (GitHub-style :emoji:)
+	- jekyll-mentions (@mentions)

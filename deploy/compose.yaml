@@ -1,0 +1,19 @@
+# Runs on the server. `docker compose up -d` once, then it keeps itself current:
+# watchtower polls GHCR every 5 min and restarts capsop when a new :latest is pushed.
+services:
+  capsop:
+    image: ghcr.io/wirehack7/capsop.com:latest
+    restart: unless-stopped
+    ports:
+      - "8080:80"   # put your TLS proxy (Caddy/Traefik/nginx) in front of this
+    labels:
+      com.centurylinklabs.watchtower.scope: capsop
+
+  watchtower:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 300 --cleanup --scope capsop
+    labels:
+      com.centurylinklabs.watchtower.scope: capsop

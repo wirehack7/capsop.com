@@ -39,11 +39,11 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-gems:
-  - jekyll-feed
+plugins:
   - jekyll-sitemap
+  - jekyll-feed
   - jemoji
   - jekyll-mentions
-  
+
 jekyll-mentions:
   base_url: https://twitter.com
