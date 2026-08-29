@@ -10,3 +10,21 @@ layout: default
 {% include post/about.html %}
 
 {% include externals/disqus.html %}
+
+<script>
+// Umami "scroll" events: how far readers get through a post.
+(function () {
+  var fired = {};
+  window.addEventListener('scroll', function () {
+    var max = document.body.scrollHeight - window.innerHeight;
+    if (max <= 0) return;
+    var pct = Math.round((window.scrollY / max) * 100);
+    [50, 90].forEach(function (m) {
+      if (pct >= m && !fired[m]) {
+        fired[m] = true;
+        if (window.umami) window.umami.track('scroll', { depth: m, path: location.pathname });
+      }
+    });
+  }, { passive: true });
+})();
+</script>

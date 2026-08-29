@@ -27,3 +27,15 @@
 		</script>
 <script defer src="https://umami.capsop.com/script.js" data-website-id="b3e98809-1cf4-4ba5-89c3-61ec9d992242"></script>
 <script defer src="https://umami.capsop.com/recorder.js" data-website-id="b3e98809-1cf4-4ba5-89c3-61ec9d992242"></script>
+<script>
+// Tag outbound links so Umami records them as "outbound" events.
+document.addEventListener('DOMContentLoaded', function () {
+  var here = location.hostname.replace(/^www\./, '');
+  document.querySelectorAll('a[href^="http"]').forEach(function (a) {
+    if (a.hostname.replace(/^www\./, '') !== here) {
+      a.dataset.umamiEvent = 'outbound';
+      a.dataset.umamiEventUrl = a.href;
+    }
+  });
+});
+</script>
