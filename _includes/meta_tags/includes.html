@@ -28,14 +28,42 @@
 <script defer src="https://umami.capsop.com/script.js" data-website-id="b3e98809-1cf4-4ba5-89c3-61ec9d992242"></script>
 <script defer src="https://umami.capsop.com/recorder.js" data-website-id="b3e98809-1cf4-4ba5-89c3-61ec9d992242"></script>
 <script>
-// Tag outbound links so Umami records them as "outbound" events.
-document.addEventListener('DOMContentLoaded', function () {
-  var here = location.hostname.replace(/^www\./, '');
-  document.querySelectorAll('a[href^="http"]').forEach(function (a) {
-    if (a.hostname.replace(/^www\./, '') !== here) {
-      a.dataset.umamiEvent = 'outbound';
-      a.dataset.umamiEventUrl = a.href;
+// Umami custom events. umami.track() is a no-op guard until script.js loads.
+(function () {
+  function track(name, data) { if (window.umami) window.umami.track(name, data); }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var here = location.hostname.replace(/^www\./, '');
+    // Outbound link clicks -> "outbound"
+    document.querySelectorAll('a[href^="http"]').forEach(function (a) {
+      if (a.hostname.replace(/^www\./, '') !== here) {
+        a.dataset.umamiEvent = 'outbound';
+        a.dataset.umamiEventUrl = a.href;
+      }
+    });
+  });
+
+  // Delegated so it works no matter when the lightbox links / ToC are built
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest && e.target.closest('a.lightbox');
+    if (img) {
+      track('image-open', { src: img.getAttribute('href'), path: location.pathname });
+      return;
+    }
+    var toc = e.target.closest && e.target.closest('#markdown-toc a[href^="#"]');
+    if (toc) track('toc-jump', { anchor: toc.getAttribute('href'), path: location.pathname });
+  });
+
+  // Copying a command / code block -> "code-copy"
+  document.addEventListener('copy', function () {
+    var n = (window.getSelection && getSelection().anchorNode) || null;
+    while (n) {
+      if (n.nodeName === 'PRE' || n.nodeName === 'CODE') {
+        track('code-copy', { path: location.pathname });
+        return;
+      }
+      n = n.parentNode;
     }
   });
-});
+})();
 </script>

@@ -22,7 +22,7 @@ layout: default
     [50, 90].forEach(function (m) {
       if (pct >= m && !fired[m]) {
         fired[m] = true;
-        if (window.umami) window.umami.track('scroll', { depth: m, path: location.pathname });
+        if (window.umami) window.umami.track('read-depth', { depth: m, path: location.pathname });
       }
     });
   }, { passive: true });

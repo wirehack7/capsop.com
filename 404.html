@@ -12,3 +12,10 @@ sitemap:
 
 <!-- Adding the glitch effect -->
 <script> document.getElementsByTagName('body')[0].classList.add('glitch'); </script>
+
+<!-- Report the broken URL to Umami so link rot shows up in analytics -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.umami) window.umami.track('404', { url: location.pathname + location.search, ref: document.referrer });
+});
+</script>
