@@ -52,10 +52,16 @@
 		var drops = [];
 		for (var x = 0; x < columns; x++) drops[x] = 1;
 
+		// Match the current theme: classic green-on-black in dark mode,
+		// ink-on-paper in light mode.
+		var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+		var fade = dark ? 'rgba(10, 12, 16, 0.08)' : 'rgba(255, 255, 255, 0.05)';
+		var glyph = dark ? '#00a828' : '#000';
+
 		function draw() {
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+			ctx.fillStyle = fade;
 			ctx.fillRect(0, 0, c.width, c.height);
-			ctx.fillStyle = '#000';
+			ctx.fillStyle = glyph;
 			ctx.font = font_size + 'px arial';
 			for (var i = 0; i < drops.length; i++) {
 				var text = chinese[Math.floor(Math.random() * chinese.length)];
