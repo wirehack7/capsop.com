@@ -395,15 +395,29 @@ div.content img.emoji {
 	max-width: auto;
 }
 
-/* Browser specific (not valid) styles to make preformatted text wrap */
+/* Code blocks: keep them inside the viewport, scroll horizontally instead */
+.content { overflow-wrap: break-word; }
 
+div.highlighter-rouge,
+div.highlight,
+pre.highlight,
 pre {
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    max-width: 100%;
+    min-width: 0;
 }
+
+pre,
+pre.highlight,
+.highlight > pre,
+.hljs {
+    white-space: pre;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Images never push the page wider than the viewport */
+div.content a.lightbox { display: block; }
+div.content img { max-width: 100%; height: auto; }
 
 canvas#c {
 	z-index:9999;
