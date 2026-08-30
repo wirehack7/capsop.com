@@ -52,11 +52,10 @@
 		var drops = [];
 		for (var x = 0; x < columns; x++) drops[x] = 1;
 
-		// Match the current theme: classic green-on-black in dark mode,
-		// ink-on-paper in light mode.
+		// Match the theme: grey rain on near-black in dark mode, ink on paper in light.
 		var dark = document.documentElement.getAttribute('data-theme') === 'dark';
 		var fade = dark ? 'rgba(10, 12, 16, 0.08)' : 'rgba(255, 255, 255, 0.05)';
-		var glyph = dark ? '#00a828' : '#000';
+		var glyph = dark ? '#9a9a9a' : '#000';
 
 		function draw() {
 			ctx.fillStyle = fade;
