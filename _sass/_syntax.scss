@@ -7,23 +7,67 @@ div.highlight {
     background: var(--code-block-bg);
     border: 1px solid var(--border);
     border-radius: 6px;
-    overflow: hidden;
 }
 
 pre.highlight {
     margin: 0;
-    padding: 12px 14px;
+    padding: 12px 0;
     background: none;
     color: var(--code-fg);
+    overflow: visible;
 }
 
-/* plain indented code (no language) */
+/* plain indented code (no language, no line numbers) */
 pre:not(.highlight) {
     background: var(--code-block-bg);
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 12px 14px;
     color: var(--code-fg);
+}
+
+/* line-number gutter (Rouge, line_numbers: true -> table.rouge-table) */
+.highlight .rouge-table {
+    display: block;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+.highlight .rouge-table td {
+    border: 0;
+    vertical-align: top;
+}
+
+.highlight .rouge-table pre {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+    overflow: visible;
+}
+
+.highlight td.rouge-gutter {
+    position: sticky;
+    left: 0;
+    padding: 0 14px;
+    background: var(--code-block-bg);
+    text-align: right;
+    user-select: none;
+    -webkit-user-select: none;
+    box-shadow: 1px 0 0 var(--border);
+}
+
+.highlight td.rouge-gutter .lineno {
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+.highlight td.rouge-code {
+    width: 100%;
+    padding: 0 16px;
 }
 
 .highlight {
