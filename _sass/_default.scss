@@ -155,6 +155,9 @@ strong {
     cursor: pointer;
     vertical-align: middle;
     margin-left: 14px;
+    font-size: 0;            /* neutralise inherited font-size (30px on mobile) */
+    line-height: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .theme-toggle__track {
@@ -168,6 +171,7 @@ strong {
     padding: 0 6px;
     border-radius: 999px;
     background: var(--border);
+    vertical-align: middle;
     transition: background-color 0.3s ease;
 }
 
@@ -175,7 +179,7 @@ strong {
     font-size: 12px;
     line-height: 1;
     color: var(--text);
-    transition: opacity 0.3s ease;
+    opacity: 0.85;
 }
 
 .theme-toggle__track:after {
@@ -194,12 +198,9 @@ strong {
 .theme-toggle:hover .theme-toggle__track { filter: brightness(1.1); }
 .theme-toggle:focus-visible .theme-toggle__track { outline: 2px solid var(--muted); outline-offset: 2px; }
 
-/* knob + icon state, driven by the resolved data-theme on <html> */
+/* knob slides to the active side; driven by the resolved data-theme on <html> */
 :root[data-theme="light"] .theme-toggle__track:after { transform: translateX(0); }
-:root[data-theme="light"] .theme-toggle__sun { opacity: 0.35; }
-
 :root[data-theme="dark"] .theme-toggle__track:after { transform: translateX(28px); }
-:root[data-theme="dark"] .theme-toggle__moon { opacity: 0.35; }
 
 /* =Titles */
 .page-title {
