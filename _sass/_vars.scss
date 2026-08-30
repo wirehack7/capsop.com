@@ -1,0 +1,5 @@
+// Colour tokens. Real values live on :root in css/main.scss; these are the
+// SCSS-side handles the partials use.
+$dorian: var(--bg);
+$iron: var(--text);
+$cloudy: var(--muted);

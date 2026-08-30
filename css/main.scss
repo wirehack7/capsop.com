@@ -6,13 +6,12 @@ sitemap: false
 ---
 @charset "utf-8";
 
-/* =Colors */
-$dorian: var(--bg);
-$iron: var(--text);
-$cloudy: var(--muted);
+@use "vars" as *;
+@use "mixins" as *;
+@use "default" as *;
+@use "404" as *;
 
-@import "mixins";
-
+/* =Colors: real values, referenced everywhere else via var() */
 :root {
     --bg: #F5F5F5;
     --text: #333333;
@@ -30,8 +29,3 @@ $cloudy: var(--muted);
 
 /* Explicit choice from the toggle (set by the no-flash script in <head>) */
 :root[data-theme="dark"] { @include dark-vars(); }
-
-@import
-    "default",
-    "404"
-;
