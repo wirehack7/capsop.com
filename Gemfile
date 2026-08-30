@@ -8,6 +8,5 @@ gem "webrick", "~> 1.9"
 group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-feed"
-  gem "jemoji"
-  gem "jekyll-mentions"
+  # jemoji / jekyll-mentions removed - see note in _config.yml
 end

@@ -37,8 +37,6 @@ kramdown:
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-  - jemoji
-  - jekyll-mentions
-
-jekyll-mentions:
-  base_url: https://twitter.com
+# jemoji / jekyll-mentions removed: they post-process every page through Nokogiri,
+# which entity-escapes < > & inside inline <script> tags on any page containing an
+# emoji or @mention, silently breaking the JS. Emoji render natively in browsers.

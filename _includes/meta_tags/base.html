@@ -1,11 +1,18 @@
 <meta charset="UTF-8">
 <script>
 // Resolve theme before paint: stored choice wins, else the visitor's OS setting.
+// Keep this script free of angle brackets and the and-and operator: jemoji runs
+// emoji pages through Nokogiri, which entity-escapes those inside inline scripts.
 (function () {
   var mode;
   try { mode = localStorage.getItem('theme'); } catch (e) {}
-  if (mode !== 'dark' && mode !== 'light') {
-    mode = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  if (mode !== 'dark') {
+    if (mode !== 'light') {
+      mode = 'light';
+      if (window.matchMedia) {
+        if (matchMedia('(prefers-color-scheme: dark)').matches) { mode = 'dark'; }
+      }
+    }
   }
   document.documentElement.setAttribute('data-theme', mode);
 })();
