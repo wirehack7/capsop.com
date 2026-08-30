@@ -82,3 +82,9 @@ code.language-r2 {
     .gi                                    { color: #22863a; background: rgba(46, 160, 67, 0.15); }
     .err                                   { color: #cb2431; }
 }
+
+/* r2 comments (everything after `;`) carry the useful annotations - make them read */
+code.language-r2 .c {
+    color: var(--code-comment);
+    font-style: normal;
+}
