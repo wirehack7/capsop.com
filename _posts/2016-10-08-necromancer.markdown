@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Exorcise the demons of the necromancer"
-subtitle: "Curing the vulnerable machine from it's demons"
-categories: [itsec]
+title: Exorcise the demons of the necromancer
+subtitle: Curing the vulnerable machine from it's demons
+categories: [itsec, English, CTF, vulnhub]
 ---
 
 Long time no post, I got kinda busy the last days. This post is again not about malware hunting, which means not that I don't hunt, I just cannot post about the last happenings and I also don't want to.
