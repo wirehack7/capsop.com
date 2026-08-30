@@ -2,6 +2,8 @@
 // `<div class="highlight"><pre class="highlight"><code>`. Colours come from
 // the --code-* custom properties (defined light in css/main.scss, dark in the
 // dark-vars() mixin), so the theme follows the site theme.
+// Line numbers are added client-side in site.js (.code-grid) so long lines
+// can wrap on narrow screens without the numbers drifting out of sync.
 
 div.highlight {
     background: var(--code-block-bg);
@@ -11,13 +13,12 @@ div.highlight {
 
 pre.highlight {
     margin: 0;
-    padding: 12px 0;
+    padding: 12px 14px;
     background: none;
     color: var(--code-fg);
-    overflow: visible;
 }
 
-/* plain indented code (no language, no line numbers) */
+/* plain indented code (no language) */
 pre:not(.highlight) {
     background: var(--code-block-bg);
     border: 1px solid var(--border);
@@ -26,48 +27,32 @@ pre:not(.highlight) {
     color: var(--code-fg);
 }
 
-/* line-number gutter (Rouge, line_numbers: true -> table.rouge-table) */
-.highlight .rouge-table {
-    display: block;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    border-collapse: collapse;
-    overflow-x: auto;
+/* client-side line numbers */
+.highlight.has-linenos pre.highlight {
+    padding: 12px 0;
+    overflow-x: hidden;
 }
 
-.highlight .rouge-table td {
-    border: 0;
-    vertical-align: top;
+.code-grid {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
 }
 
-.highlight .rouge-table pre {
-    margin: 0;
-    padding: 0;
-    background: none;
-    border: 0;
-    overflow: visible;
-}
-
-.highlight td.rouge-gutter {
-    position: sticky;
-    left: 0;
+.code-grid__ln {
     padding: 0 14px;
-    background: var(--code-block-bg);
     text-align: right;
+    color: var(--muted);
+    opacity: 0.7;
     user-select: none;
     -webkit-user-select: none;
     box-shadow: 1px 0 0 var(--border);
 }
 
-.highlight td.rouge-gutter .lineno {
-    color: var(--muted);
-    opacity: 0.7;
-}
-
-.highlight td.rouge-code {
-    width: 100%;
+.code-grid__line {
     padding: 0 16px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    tab-size: 4;
 }
 
 .highlight {

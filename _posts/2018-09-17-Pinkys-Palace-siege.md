@@ -347,7 +347,7 @@ Thankfully not stripped :grin:. We see where main() starts, imports, strings, in
 
 Here is main:
 
-```
+```r2
 
             ;-- main:
 ┌ (fcn) sym.main 307

@@ -58,6 +58,51 @@
     });
   }
 
+  /* ---- radare2 / disassembly highlighting (```r2) --------------------- */
+
+  const R2_RE = new RegExp([
+    /(;[^\n]*)/,                                                              // comment
+    /("(?:[^"\\\n]|\\.)*")/,                                                  // dq string
+    /('[^'\n]*')/,                                                            // sq string
+    /(\b0x[0-9a-fA-F]+\b)/,                                                   // address / hex literal
+    /(\b(?:sym|str|obj|loc|fcn|sub|imp|reloc|section|segment|dbg|method|aav|arg|var)(?:\.[\w$@.]+)+)/, // r2 flags
+    /(\b(?:byte|word|dword|qword|tword|oword|xmmword|ymmword|ptr|near|far|short)\b)/,                  // size hints
+    /(\b(?:if|else|goto|return|call|j[a-z]{1,3}|push|pop|mov[a-z]*|lea|cmp|test|x?add|sub|adc|sbb|xor|and|or|not|neg|ret|leave|nop|inc|dec|shl|shr|sar|rol|ror|imul|idiv|mul|div|int3?|syscall|endbr64|cdqe?|cqo|hlt)\b)/, // mnemonics
+    /(\b(?:[re]?[abcd]x|[re]?[sd]i|[re]?[sb]p|r(?:8|9|1[0-5])[dwb]?|[abcd][lh]|[re]?ip|[re]?flags|[cdefgs]s|[xy]mm\d+)\b)/, // registers
+    /(\b[0-9a-fA-F]{4,}\.?)/,                                                 // opcode-bytes column
+    /(\b\d+\b)/,                                                              // decimal
+  ].map((r) => r.source).join('|'), 'g');
+  const R2_CLS = ['c', 's2', 's1', 'mh', 'nf', 'kt', 'k', 'nb', 'cs', 'mi'];
+  const escHtml = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+  for (const code of document.querySelectorAll('.language-r2 pre.highlight > code, .language-r2.highlighter-rouge > code')) {
+    code.innerHTML = escHtml(code.textContent).replace(R2_RE, (m, ...g) => {
+      const i = g.findIndex((x) => x !== undefined);
+      return i < 0 ? m : `<span class="${R2_CLS[i]}">${m}</span>`;
+    });
+  }
+
+  /* ---- Code blocks: line numbers that wrap with their line ------------- */
+
+  for (const code of document.querySelectorAll('.highlight > pre.highlight > code')) {
+    const html = code.innerHTML.replace(/\n$/, '');
+    const lines = html.split('\n');
+    const grid = document.createElement('div');
+    grid.className = 'code-grid';
+    lines.forEach((line, i) => {
+      const num = document.createElement('span');
+      num.className = 'code-grid__ln';
+      num.setAttribute('aria-hidden', 'true');
+      num.textContent = i + 1;
+      const src = document.createElement('span');
+      src.className = 'code-grid__line';
+      src.innerHTML = line || ' ';
+      grid.append(num, src);
+    });
+    code.replaceChildren(grid);
+    code.closest('.highlight').classList.add('has-linenos');
+  }
+
   /* ---- Scroll to top --------------------------------------------------- */
 
   const toTop = document.createElement('button');
