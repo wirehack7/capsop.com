@@ -10,6 +10,8 @@ In this post I will show you a few ways to secure your Debian (or Ubuntu) based 
 
 **You are an admin, you have to look into server security, don't be lazy and read some articles and manuals. There are more than enough in the WWW, just waiting for you**
 
+**Update 2026:** wrote this in 2014, refreshed the commands since then - *systemd* instead of ```/etc/init.d```, *Ed25519* keys instead of *RSA*, *nftables* under the hood. The ideas didn't change, the tools did.
+
 ## Sudo
 
 Debian has not the package **sudo** installed per default. **sudo** enables running commands as **superuser**. To grant this privilege to a user you might add him in the file ```/etc/sudoers``` or add him to the group *sudo*.
@@ -51,7 +53,7 @@ Let's start and create a new user:
         Is the information correct? [Y/n] y
 
 Okay, we have a new user now.
-Let's do the important part to your *sshd*, open ```/etc/ssh/sshd_config``` with your favorite text editor (with *sudo* or as *root*). There you will have to change a few lines:
+Let's do the important part to your *sshd*, open ```/etc/ssh/sshd_config``` with your favorite text editor (with *sudo* or as *root*). On newer *Debian* you can also drop a ```*.conf``` file into ```/etc/ssh/sshd_config.d/``` instead of touching the main file. There you will have to change a few lines:
 
 
         Port 7654
@@ -60,43 +62,45 @@ Let's do the important part to your *sshd*, open ```/etc/ssh/sshd_config``` with
 
 This will change the SSH port to :7654. I recommend you to not use a *Well-Known Port* (ports from 1-1024). Use something above 1024 and make sure nothing is listening on it:
 
-        sudo netstat -tulpn | grep :7654
+        sudo ss -tulpn | grep :7654
+
+(older guides use ```netstat -tulpn```, but *net-tools* isn't installed on a default *Debian* anymore.)
 
 It should not echo anything, so nothing is running on that port. If something listens on that port, change it.
 The settings will disable that the user *root* is able to login and only key authentication can be used.
 As the user you just created (*wirehack7* in my example) you need to generate a key pair, the public one will be on the machine we are configuring just now, and the private one will be on our home machine (or from whatever you want to login).
 If you are using a Linux based machine, do that:
 
-        ssh-keygen -t rsa -C "your_email@example.com"
+        ssh-keygen -t ed25519 -C "your_email@example.com"
 
-I highly recommend that you also that a pass-phrase on your key, if it gets leaked the attacker must have also the pass-phrase to use it. Two files are created, **id_dsa** and **id_dsa.pub**. Copy the contents of your **id_dsa.pub** file and switch to your remote connection.
+Back in 2014 this post said *RSA*, use *Ed25519* now - shorter, faster and there is no key size to pick. I highly recommend that you also that a pass-phrase on your key, if it gets leaked the attacker must have also the pass-phrase to use it. Two files are created, **id_ed25519** and **id_ed25519.pub**. Copy the contents of your **id_ed25519.pub** file and switch to your remote connection.
 For Windows get puttygen.exe and generate your key pair:
 
 ![](https://i.imgur.com/hKEF1Ib.png)
 
-Make sure that you chose **SSH-2 RSA**. You might also change the bits which are choose to 4096, but 2048 is okay so far (maybe not for NSA). Copy the content of the box at the top ("Key"). Save your private key to a safe place.
+Make sure that you chose **EdDSA** with the **Ed25519** curve (older *PuTTY* only offers **SSH-2 RSA**, then set the bits to 4096, 2048 is okay so far but maybe not for NSA). Copy the content of the box at the top ("Key"). Save your private key to a safe place.
 
 You have to create the folder *.ssh* if it does not exist. Also *SSH* needs a file to read the public key.
 
         mkdir ~/.ssh
         cd .ssh
-        cat "<your copied ssh pub key here>" >> authorized_keys2
+        echo "<your copied ssh pub key here>" >> authorized_keys
         chmod 700 ~/.ssh
-        chmod 600 ~/.ssh/authorized_keys2
+        chmod 600 ~/.ssh/authorized_keys
 
 **Make sure that the copied line is ONE line and contains no line breaks**
 Now, restart your *SSH* daemon:
 
-        sudo /etc/init.d/ssh restart
+        sudo systemctl restart ssh
 
 **Do not close your existing remote connection, otherwise you won't be able to connect if anything fails now!**
 Open a new connection and use your private key. In Linux do that:
 
-        ssh -i ~/.ssh/id_rsa -p <your port> -l <your username> <your ip>
+        ssh -i ~/.ssh/id_ed25519 -p <your port> -l <your username> <your ip>
 
 Like:
 
-        ssh -i ~/.ssh/id_rsa -p 7654 -l wirehack7 capsop.com
+        ssh -i ~/.ssh/id_ed25519 -p 7654 -l wirehack7 capsop.com
 
 In Windows open putty.exe and edit that part:
 
@@ -113,31 +117,22 @@ Install **fail2ban**:
 
         sudo apt-get install fail2ban
 
-In ```/etc/fail2ban/jail.conf``` is your configuration for whitelists, number of tries, action to ban and the listened ports/services itself. Change these:
+Don't edit ```/etc/fail2ban/jail.conf``` directly, it gets overwritten on updates. Put your changes in ```/etc/fail2ban/jail.local``` instead (whitelists, number of tries, action to ban, the listened ports/services):
 
-        [ssh]
+        [sshd]
 
         enabled  = true
         port     = <your SSH port>
-        filter   = sshd
+        filter   = sshd[mode=aggressive]
         logpath  = /var/log/auth.log
         maxretry = 3
 
-
-        [ssh-ddos]
-
-        enabled  = true
-        port     = <your SSH port>
-        filter   = sshd-ddos
-        logpath  = /var/log/auth.log
-        maxretry = 6
-
-This will listen on our desired SSH port for login tries, after 3 false tries it will ban the IP. *ssh-ddos* will protect your SSH port from simple DDOS attacks, i.e. sending TCP packets to your port.
-I recommend you to read some [manuals](http://www.fail2ban.org/wiki/index.php/MANUAL_0_8) about *fail2ban*, it is a really powerful tool and can be misconfigured easily.
+This will listen on our desired SSH port for login tries, after 3 false tries it will ban the IP. The *aggressive* filter mode also picks up the noisy connection abuse that the old *ssh-ddos* jail used to handle - that filter got removed from *fail2ban*, so don't add it anymore.
+I recommend you to read some [manuals](https://github.com/fail2ban/fail2ban/wiki) about *fail2ban*, it is a really powerful tool and can be misconfigured easily.
 
 After editing restart *fail2ban*:
 
-        sudo /etc/init.d/fail2ban restart
+        sudo systemctl restart fail2ban
 
 
 ## UFW
@@ -160,7 +155,7 @@ You will be prompted if you are sure about this.
 *ufw* is simply using whitelisting, all ports which are not allowed are closed. It is even able to do more, just read some manuals about it.
 
 ## Portsentry
-The counter part of portscanning attacks comes here: **portsentry**. This tool listens on ports and analyses for port scanning attempts, like from **nmap**. This is not the glory grail, this is just a chance to counter some scans.
+The counter part of portscanning attacks comes here: **portsentry**. This tool listens on ports and analyses for port scanning attempts, like from **nmap**. This is not the glory grail, this is just a chance to counter some scans. Be honest with yourself here: if *ufw* already drops everything except your *SSH* port, a scan finds nothing anyway. *portsentry* is mostly there to spot and block someone knocking around before they get lucky.
 To install do that:
 
         sudo apt-get install portsentry
@@ -174,7 +169,7 @@ Let's open ```/etc/portsentry/portsentry.conf``` and edit a few lines:
         # iptables support for Linux
         KILL_ROUTE="/sbin/iptables -I INPUT -s $TARGET$ -j DROP"
 
-This will drop port scan attempts for *TCP* and *UDP*. I like it that IP's are resolved to names, so you can change that line:
+This will drop port scan attempts for *TCP* and *UDP* (on newer *Debian* ```/sbin/iptables``` is just a compat shim over *nftables*, the rule still works). I like it that IP's are resolved to names, so you can change that line:
 
         RESOLVE_HOST = "1"
 
@@ -192,9 +187,18 @@ I recommend stealth for UDP and advanced stealth for TCP. To set this open ```/e
 
 Restart *portsentry*:
 
-        sudo /etc/init.d/portsentry restart
+        sudo systemctl restart portsentry
 
 Hooray, we have a counter to port scans.
+
+## Automatic updates
+
+The laziest win of them all, and it wasn't in the original post: let the box patch itself. Install **unattended-upgrades**:
+
+        sudo apt-get install unattended-upgrades
+        sudo dpkg-reconfigure -plow unattended-upgrades
+
+Now security updates land without you logging in. A server you never update is not secure, no matter how many of the steps above you did.
 
 ## Afterwork
 
