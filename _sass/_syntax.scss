@@ -1,0 +1,35 @@
+// Rouge syntax highlighting. Tokens are emitted at build time inside
+// `<div class="highlight"><pre class="highlight"><code>`. Colours come from
+// the --code-* custom properties (defined light in css/main.scss, dark in the
+// dark-vars() mixin), so the theme follows the site theme.
+
+div.highlight,
+pre.highlight {
+    background: var(--code-block-bg);
+    border-radius: 6px;
+}
+
+pre.highlight {
+    padding: 12px 14px;
+    color: var(--code-fg);
+}
+
+.highlight {
+    .c, .ch, .cd, .cm, .cp, .cpf, .c1, .cs { color: var(--code-com); font-style: italic; }
+    .k, .kc, .kd, .kn, .kp, .kr, .kt      { color: var(--code-kw); }
+    .o, .ow                                { color: var(--code-op); }
+    .p, .pi                                { color: var(--code-fg); }
+    .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: var(--code-str); }
+    .m, .mb, .mf, .mh, .mi, .il, .mo, .mx { color: var(--code-num); }
+    .na, .nv, .vc, .vg, .vi, .n, .nl, .nn, .nx, .py, .no { color: var(--code-fg); }
+    .nc, .nf, .fm, .nd                     { color: var(--code-name); }
+    .nb, .bp, .ni, .ne                     { color: var(--code-tag); }
+    .nt                                    { color: var(--code-tag); }
+    .gp                                    { color: var(--code-com); }
+    .gh, .gu                               { color: var(--code-name); font-weight: bold; }
+    .gs                                    { font-weight: bold; }
+    .ge                                    { font-style: italic; }
+    .gd                                    { color: #b31d28; background: rgba(255, 129, 130, 0.15); }
+    .gi                                    { color: #22863a; background: rgba(46, 160, 67, 0.15); }
+    .err                                   { color: #cb2431; }
+}

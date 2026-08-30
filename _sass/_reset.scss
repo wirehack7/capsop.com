@@ -1,0 +1,55 @@
+// Small modern reset, replaces normalize.css. Deliberately conservative: the
+// hand-written layout below relies on the UA's default margins for headings
+// and paragraphs, so those are left alone.
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+}
+
+body {
+    margin: 0;
+}
+
+hr {
+    height: 0;
+    color: inherit;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+[hidden] {
+    display: none !important;
+}

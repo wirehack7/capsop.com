@@ -78,4 +78,9 @@
 	window.matrix = function () {
 		if (timer) stop(); else start();
 	};
+
+	document.getElementById('matrix')?.addEventListener('click', function (e) {
+		e.preventDefault();
+		window.matrix();
+	});
 })();

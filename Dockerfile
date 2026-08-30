@@ -1,5 +1,5 @@
 # build the site
-FROM ruby:3.3-slim AS build
+FROM ruby:3.4-slim AS build
 
 RUN apt-get update && apt-get install -y --no-install-recommends build-essential \
     && rm -rf /var/lib/apt/lists/*
@@ -12,6 +12,6 @@ COPY . .
 RUN bundle exec jekyll build --trace
 
 # serve it
-FROM nginx:1.27-alpine
+FROM nginx:1.30-alpine
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /site/_site /usr/share/nginx/html

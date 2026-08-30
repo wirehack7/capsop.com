@@ -1,30 +1,6 @@
-<script src="{{ "/assets/js/matrix.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/assets/js/jquery-3.1.0.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/assets/js/simple-lightbox.min.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/assets/js/videos.js" | prepend: site.baseurl }}"></script>
-<script src="{{ "/assets/js/jquery.scrollUp.min.js" | prepend: site.baseurl }}"></script>
-<link rel="stylesheet" href="{{ "/assets/js/simplelightbox.min.css" | prepend: site.baseurl }}">
+<script src="{{ "/assets/js/matrix.js" | prepend: site.baseurl }}" defer></script>
+<script src="{{ "/assets/js/site.js" | prepend: site.baseurl }}" defer></script>
 
-		<script type="text/javascript">
-		
-				$(document).ready(function() {
-		$('div.content p img').not(".emoji").each(function ()
-		{
-			var currentImage = $(this);
-			currentImage.wrap($('<a>',{
-				href: currentImage.attr("src"),
-				class: 'lightbox'
-			}));
-		});
-		lightbox = $('a.lightbox').simpleLightbox();
-		
-		$(function () {
-			$.scrollUp({ scrollText: '↑', scrollTitle: 'Scroll to top' });
-		});
-		
-		
-	});
-		</script>
 <script defer src="https://umami.capsop.com/script.js" data-website-id="b3e98809-1cf4-4ba5-89c3-61ec9d992242"></script>
 <script defer src="https://umami.capsop.com/recorder.js" data-website-id="b3e98809-1cf4-4ba5-89c3-61ec9d992242"></script>
 <script>
@@ -33,9 +9,6 @@
   function track(name, data) { if (window.umami) window.umami.track(name, data); }
 
   // Dark-mode toggle (button is injected into the header further down the page).
-  // Keep angle brackets and the and-and operator out of the inline scripts in
-  // this file: jemoji sends emoji pages through Nokogiri, which entity-escapes
-  // those characters inside inline scripts and breaks the JS.
   document.addEventListener('click', function (e) {
     var hit = e.target.closest ? e.target.closest('#theme-toggle') : null;
     if (!hit) { return; }

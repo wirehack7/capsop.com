@@ -8,7 +8,9 @@ sitemap: false
 
 @use "vars" as *;
 @use "mixins" as *;
+@use "reset" as *;
 @use "default" as *;
+@use "syntax" as *;
 @use "404" as *;
 
 /* =Colors: real values, referenced everywhere else via var() */
@@ -20,6 +22,17 @@ sitemap: false
     --border: #cccccc;
     --rule: #DBDBDB;
     color-scheme: light;
+
+    /* syntax highlighting (Rouge) */
+    --code-block-bg: #f6f8fa;
+    --code-fg: #24292e;
+    --code-com: #6a737d;
+    --code-kw: #d73a49;
+    --code-str: #032f62;
+    --code-num: #005cc5;
+    --code-name: #6f42c1;
+    --code-tag: #22863a;
+    --code-op: #24292e;
 }
 
 /* No-JS / pre-paint fallback: honour the visitor's OS setting */
