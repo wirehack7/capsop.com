@@ -55,6 +55,13 @@ pre.highlight {
     tab-size: 4;
 }
 
+/* no room for a line-number gutter on a phone */
+@media (max-width: 800px) {
+    .code-grid { grid-template-columns: minmax(0, 1fr); }
+    .code-grid__ln { display: none; }
+    .code-grid__line { padding: 0 14px; }
+}
+
 .highlight,
 code.language-r2 {
     .c, .ch, .cd, .cm, .cp, .cpf, .c1, .cs { color: var(--code-com); font-style: italic; }
