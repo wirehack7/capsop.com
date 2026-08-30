@@ -19,7 +19,7 @@
 		lightbox = $('a.lightbox').simpleLightbox();
 		
 		$(function () {
-			$.scrollUp({ scrollText: '<i class="fa fa-chevron-up"></i>', scrollTitle: 'Scroll to top' });
+			$.scrollUp({ scrollText: '<i class="fa fa-chevron-up"><\/i>', scrollTitle: 'Scroll to top' });
 		});
 		
 		
@@ -32,9 +32,10 @@
 (function () {
   function track(name, data) { if (window.umami) window.umami.track(name, data); }
 
-  // Dark-mode toggle (delegated: button is rendered later in <body>)
+  // Dark-mode toggle (button is injected into the header further down the page)
   document.addEventListener('click', function (e) {
-    if (!(e.target.closest && e.target.closest('#theme-toggle'))) return;
+    var hit = e.target.closest && e.target.closest('#theme-toggle');
+    if (!hit) return;
     var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (err) {}
