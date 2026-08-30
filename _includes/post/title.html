@@ -1,4 +1,18 @@
 <h1 class="page-title post-title">
     <div class="page-title__text post-title__text">{{ page.title }}</div>
     <div class="page-title__subtitle post-title__subtitle">{{ page.subtitle }}</div>
+    <div class="post-meta">
+        {{ page.date | date: "%d %B %Y" }}
+        <span class="post-meta__dot">&middot;</span>
+        {{ include.reading_time }} min read
+        {%- assign lm = site.data.last_modified[page.path] -%}
+        {%- if lm and lm != "" -%}
+            {%- assign lmd = lm | date: "%Y-%m-%d" -%}
+            {%- assign pd = page.date | date: "%Y-%m-%d" -%}
+            {%- if lmd != pd -%}
+                <span class="post-meta__dot">&middot;</span>
+                updated {{ lm | date: "%d %B %Y" }}
+            {%- endif -%}
+        {%- endif -%}
+    </div>
 </h1>

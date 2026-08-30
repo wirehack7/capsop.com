@@ -256,6 +256,70 @@ strong {
     font-size: 20px;
 }
 
+.post-meta {
+    margin-top: 18px;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.post-meta__dot {
+    margin: 0 6px;
+    opacity: 0.6;
+}
+
+/* =Table of contents (kramdown {:toc}) */
+#markdown-toc {
+    margin: 45px 0;
+    padding: 18px 24px;
+    background: var(--code-block-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--muted);
+    border-radius: 6px;
+    list-style: none;
+    font-size: 16px;
+    line-height: 1.75;
+    counter-reset: toc;
+}
+
+#markdown-toc::before {
+    content: "Contents";
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+#markdown-toc > li {
+    counter-increment: toc;
+}
+
+#markdown-toc > li > a::before {
+    content: counter(toc) ".\00a0\00a0";
+    color: var(--muted);
+}
+
+#markdown-toc ul {
+    margin: 2px 0 2px 22px;
+    padding: 0;
+    list-style: none;
+    font-size: 15px;
+}
+
+#markdown-toc a {
+    color: var(--text);
+    font-weight: 400;
+    text-decoration: none;
+}
+
+#markdown-toc a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 /* =Post teasers */
 
 .list-posts {

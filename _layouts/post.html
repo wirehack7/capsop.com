@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-{% include post/title.html %}
+{% assign _reading_time = content | reading_time %}
+{% include post/title.html reading_time=_reading_time %}
 
 <div class="content">
     {{ content }}

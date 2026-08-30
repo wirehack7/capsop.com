@@ -1,0 +1,3 @@
+# path -> ISO date of the file's last commit. Regenerated in CI (deploy.yml)
+# from `git log`; this committed copy is just the fallback for local builds.
+{}
