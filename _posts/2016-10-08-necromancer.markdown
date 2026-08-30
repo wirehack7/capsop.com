@@ -73,7 +73,7 @@ Nmap done: 1 IP address (1 host up) scanned in 21.52 seconds
 
 No open ports, I also tested several other techniques, but they remain closed. 
 
-First time to while doing this CTF to think about it. So this VM has no open ports but we have to gain access to it, via network. Hmm :pensive:
+First time to while doing this CTF to think about it. So this VM has no open ports but we have to gain access to it, via network. Hmm 😔
 
 What if it's the other side? What if the VM sends data? So let's start Wireshark and test it.
 
@@ -229,11 +229,11 @@ root@kali:~/necromancer# cat feathers.txt | base64 -d
 flag3{9ad3f62db7b91c28b68137000394639f} - Cross the chasm at /amagicbridgeappearsatthechasm
 ```
 
-Hooray :smiley:, we found the next flag! It resolves to
+Hooray 😃, we found the next flag! It resolves to
 
 > 345465869
 
-Hmm, a number, okay :thinking:
+Hmm, a number, okay 🤔
 
 And a new hint, looks like part of a URI. Time to navigate to that.
 
@@ -247,7 +247,7 @@ That was one of the hard parts of the CTF. I thought about it a long while. But 
 
 > There must be a magical item that could protect you from the necromancer's spell. 
 
-A "*magical item*". Hmmmm. :thinking:
+A "*magical item*". Hmmmm. 🤔
 
 `index.php` gave a *404*. But could also a *mod_rewrite*. Maybe directory brute forcing would help as it did before with vulnOS's. I searched a website with words of magic items and found a forum post. Then I used **cewl** to create a wordlist:
 
@@ -344,7 +344,7 @@ So I put the VM away, for a whole day.
 Well, with static analysis I did not get far, so why not dynamic analysis and debug this ELF? I mainly did that on Windows with **ollydbg**. But this was Linux, and this was not a *PE*.
 
 According to [that](http://www.dirac.org/linux/gdb/04-Breakpoints_And_Watchpoints.php) I read about how to set breakpoints. But that did not get me further.
-The file was not stripped during compiling, so some compiling information was still present. Also the function names remained the same as they are named in the source file. So I read [this thread](http://stackoverflow.com/questions/10680670/ask-gdb-to-list-all-function-in-a-program). And it got me on the right trail! :godmode:
+The file was not stripped during compiling, so some compiling information was still present. Also the function names remained the same as they are named in the source file. So I read [this thread](http://stackoverflow.com/questions/10680670/ask-gdb-to-list-all-function-in-a-program). And it got me on the right trail! 😎
 
 ```
 gdb$ info functions
@@ -523,7 +523,7 @@ We have the password! Let's send that to the mentioned port from before.
 death2all
 ```
 
-Okay, that was a fail. Nothing happens. Would be too easy, eh :grinning:
+Okay, that was a fail. Nothing happens. Would be too easy, eh 😀
 
 Let's look at the protocol, **SNMP**. Kali has a tool included to check a *SNMP* service: [snmpcheck](http://tools.kali.org/information-gathering/snmpcheck). So:
 
@@ -609,7 +609,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 6.25 seconds
 ```
 
-Wohoo, it's open :feelsgood:
+Wohoo, it's open 😌
 
 ```
 root@kali:~/necromancer# ssh root@10.0.0.100

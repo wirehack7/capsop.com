@@ -27,7 +27,7 @@ For the pentesting purpose I'll use Kali Linux.
 
 ## Gather information
 
-First thing to do is get down which IP the VM uses. Yes we can simple look at the DHCP server, but why... :wink:
+First thing to do is get down which IP the VM uses. Yes we can simple look at the DHCP server, but why... 😉
 
 	root@kali:~# nmap -sP 192.168.1.0/24
 
@@ -138,7 +138,7 @@ Do you know port knocking? It's a way to restrict access to a port. Other ports 
 	Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 	Nmap done: 1 IP address (1 host up) scanned in 14.39 seconds
 
-Wow, as we see, the port opened! :tada:
+Wow, as we see, the port opened! 🎉
 
 ## The webserver
 
@@ -204,7 +204,7 @@ Okay, we have here a ```dashboard.php```, that looks promising. But it isn't. Le
 
 	[22:25:47] [CRITICAL] all tested parameters appear to be not injectable. Try to increase '--level'/'--risk' values to perform more tests. Also, you can try to rerun by providing either a valid value for option '--string' (or '--regexp') If you suspect that there is some kind of protection mechanism involved (e.g. WAF) maybe you could retry with an option '--tamper' (e.g. '--tamper=space2comment')
 
-So, SQLi won't work, too. Damn it. I think it's the first time for a pause and think about it. :rage1:
+So, SQLi won't work, too. Damn it. I think it's the first time for a pause and think about it. 😡
 
 OK, after stroking the cat and watching two *Mr. Robot* episodes I am thinking about HTTP Headers and the funny dog picture at ```dashboard.php```. This has to be the trail, let's test a view things and play with HTTP headers. I assume header ```Host:``` won't really help. Bah, still no clue. I asked in VulnHub channel in Freenode and someone gave me the hint to use ```Referer:```. Yes, this was kinda cheating, but I was really frustrated, so I put some social in it (aka asking). And after some playing with **curl** I got that:
 
@@ -374,7 +374,7 @@ Lol, wat, ```%%EOFRar!```. Is there a **RAR** archive in it?
 	Kind & Best Regards,
 	Acid
 
-Nice! Let's look at ```lol.jpg```. It's getting a routine :smile:
+Nice! Let's look at ```lol.jpg```. It's getting a routine 😄
 
 	root@kali:~/Downloads# unrar e lol.jpg
 	
@@ -539,7 +539,7 @@ Okay. There is ```./overlayfs``` in the history. Maybe that is our ELF?
 	# whoami
 	root
 
-Yay, we have root! :godmode:
+Yay, we have root! 😎
 
 	# cd /root
 	# ls -al

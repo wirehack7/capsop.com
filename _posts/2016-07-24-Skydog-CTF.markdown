@@ -5,7 +5,7 @@ subtitle: "The answer to who let the dogs out"
 categories: [itsec]
 ---
 
-Another day, another vulnerable OS. Well, not really that often, but these days I enjoy it to solve them after work. Nice to get other thoughts and to relax. This time I'm doing **SkyDog CTF 1**. It has six flags included with a hint for each of them. They are MD5 hashes which obviously need to be cracked then :smile:
+Another day, another vulnerable OS. Well, not really that often, but these days I enjoy it to solve them after work. Nice to get other thoughts and to relax. This time I'm doing **SkyDog CTF 1**. It has six flags included with a hint for each of them. They are MD5 hashes which obviously need to be cracked then 😄
 
 ![](https://i.imgur.com/pqOugFL.jpg)
 

@@ -241,8 +241,8 @@ into Pinky's Palace.
 help
 ```
 
-Hmm :thinking:. Not sure what that is, so let's focus on the other services. The new HTTP service shows us a login page. I created a user list file, standard usernames and guessed ones:
-(yes I tested also for SQLi, with no success. If you find a way to SQLi please message me :wink:)
+Hmm 🤔. Not sure what that is, so let's focus on the other services. The new HTTP service shows us a login page. I created a user list file, standard usernames and guessed ones:
+(yes I tested also for SQLi, with no success. If you find a way to SQLi please message me 😉)
 
 ```
 root
@@ -343,7 +343,7 @@ subsys   linux
 va       true
 ```
 
-Thankfully not stripped :grin:. We see where main() starts, imports, strings, information about the ELF. There are some interesting strings, to see how they are used I am doing a static analysis. Don't see this as full tutorial on how to reverse engineer, I will just describe details of the ELF. For static analysis I use [radare2](https://rada.re/r/), it's free and really powerful.
+Thankfully not stripped 😁. We see where main() starts, imports, strings, information about the ELF. There are some interesting strings, to see how they are used I am doing a static analysis. Don't see this as full tutorial on how to reverse engineer, I will just describe details of the ELF. For static analysis I use [radare2](https://rada.re/r/), it's free and really powerful.
 
 Here is main:
 
@@ -503,7 +503,7 @@ Checking if the password string is bigger than 40 (0x28 is hexadecimal, decimal 
 
 Here it compares `s1` with `s2`. So when the given password is the `$TERM` string it continues. Otherwise an error is prompted and the program exists.
 
-I will skip the `uid` and `gid` part as it just sets the group and user id for the file which will be created then (spoiler eh? :stuck_out_tongue_winking_eye:).
+I will skip the `uid` and `gid` part as it just sets the group and user id for the file which will be created then (spoiler eh? 😜).
 
 It calls the function `sym.send` then. 
 
@@ -991,9 +991,9 @@ And we solved this CTF.
 
 ## Conclusion
 
-I really enjoyed this CTF. It began rather simple and got kind hard in the end. It teached me how to use peda :grin:!
+I really enjoyed this CTF. It began rather simple and got kind hard in the end. It teached me how to use peda 😁!
 
 Also it shows how important it is to code securely. Not testing buffer is kinda bad thing, even more when you use it in a listening service.
 
-So, next it Pinky's Palace v3 I think :smile:
+So, next it Pinky's Palace v3 I think 😄
 

