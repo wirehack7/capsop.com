@@ -451,7 +451,7 @@ So what it does?
 
 First it checks if arguments are given, if not, a usage help is printed and the program exists. Otherwise it asks for a password then. Let's see what the password is.
 
-```
+```r2
 0x00000ad1      488d3dc30100.  rdi = str.TERM              ; 0xc9b ; "TERM" ; const char *name
 0x00000ad8      e873fdffff     sym.imp.getenv ()           ; char *getenv(const char *name)
 0x00000add      488945f8       qword [s2] = rax
@@ -467,7 +467,7 @@ First it checks if arguments are given, if not, a usage help is printed and the 
 
 `s2` is set to the string from the environment variable `TERM`. `s1` is set to the password input.
 
-```
+```r2
     0x00000b11      e86afdffff     sym.imp.strlen ()           ; size_t strlen(const char *s)
     0x00000b16      4883f828       var = rax - 0x28            ; '('
 ┌─< 0x00000b1a      7616           if (((unsigned) var) <= 0) goto 0xb32
@@ -482,7 +482,7 @@ First it checks if arguments are given, if not, a usage help is printed and the 
 
 Checking if the password string is bigger than 40 (0x28 is hexadecimal, decimal is 40) chars. If yes, exit. If no, continue.
 
-```
+```r2
 │       └─> 0x00000b32      488b55f8       rdx = qword [s2]
 │           0x00000b36      488d45b0       rax = [s1]
 │           0x00000b3a      4889d6         rsi = rdx                   ; const char *s2
@@ -507,7 +507,7 @@ I will skip the `uid` and `gid` part as it just sets the group and user id for t
 
 It calls the function `sym.send` then. 
 
-```
+```r2
 ┌ (fcn) sym.send 55
 │   sym.send (int arg1);
 │           ; var int local_18h @ rbp-0x18
@@ -917,7 +917,7 @@ Flow of main function:
 The binary creates a TCP server and listens for connections (the port is 31337, assigned here: `0x00400a37      bf697a0000     edi = 0x7a69 `). If a connection is made a text will be sent and then it waits for input. When the input is sent it just sends it back. As you might have mentioned, it appears to be the program which is listening on the box at 31337. As it says, this might be the backdoor for root.
 
 I see that a buffer is created for the input:
-```
+```r2
 0x00400b39      b900000000     ecx = 0
 0x00400b3e      ba00100000     edx = 0x1000
 0x00400b43      89c7           edi = eax
