@@ -3,13 +3,25 @@
 // the --code-* custom properties (defined light in css/main.scss, dark in the
 // dark-vars() mixin), so the theme follows the site theme.
 
-div.highlight,
-pre.highlight {
+div.highlight {
     background: var(--code-block-bg);
+    border: 1px solid var(--border);
     border-radius: 6px;
+    overflow: hidden;
 }
 
 pre.highlight {
+    margin: 0;
+    padding: 12px 14px;
+    background: none;
+    color: var(--code-fg);
+}
+
+/* plain indented code (no language) */
+pre:not(.highlight) {
+    background: var(--code-block-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
     padding: 12px 14px;
     color: var(--code-fg);
 }

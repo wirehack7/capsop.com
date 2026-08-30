@@ -30,8 +30,9 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var here = location.hostname.replace(/^www\./, '');
-    // Outbound link clicks -> "outbound"
-    document.querySelectorAll('a[href^="http"]').forEach(function (a) {
+    // Outbound link clicks -> "outbound". Skip lightbox links: umami would
+    // "complete" the navigation and send the reader to the raw image host.
+    document.querySelectorAll('a[href^="http"]:not(.lightbox)').forEach(function (a) {
       if (a.hostname.replace(/^www\./, '') !== here) {
         a.dataset.umamiEvent = 'outbound';
         a.dataset.umamiEventUrl = a.href;

@@ -42,8 +42,10 @@
 
     shots.forEach((link, n) => link.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       show(n);
       modal.showModal();
+      window.umami?.track('image-open', { src: link.getAttribute('href'), path: location.pathname });
     }));
 
     modal.querySelector('.lb__close').addEventListener('click', () => modal.close());
