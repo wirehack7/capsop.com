@@ -11,6 +11,7 @@ timezone: "Europe/Berlin"
 encoding: utf-8
 
 author:
+  name: wirehack7          # used by jekyll-feed (Atom)
   fullname: wirehack7
   # googleplus: https://www.google.com/+MotaquillahMaddane
   github: wirehack7

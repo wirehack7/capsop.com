@@ -1,0 +1,25 @@
+---
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <description>{{ site.description | strip_newlines | strip | xml_escape }}</description>
+    <link>{{ '/' | absolute_url }}</link>
+    <atom:link href="{{ '/rss.xml' | absolute_url }}" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <generator>Jekyll</generator>
+    {% for post in site.posts %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ post.url | absolute_url }}</link>
+      <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      {% for cat in post.categories %}<category>{{ cat | xml_escape }}</category>
+      {% endfor %}<description>{% if post.subtitle %}{{ post.subtitle }} — {% endif %}{{ post.excerpt | strip_html | strip_newlines | truncate: 400 | xml_escape }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
