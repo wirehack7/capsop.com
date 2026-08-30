@@ -75,7 +75,8 @@
   const R2_CLS = ['c', 's2', 's1', 'mh', 'nf', 'kt', 'k', 'nb', 'cs', 'mi'];
   const escHtml = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
 
-  for (const code of document.querySelectorAll('.language-r2 pre.highlight > code, .language-r2.highlighter-rouge > code')) {
+  // rouge lexes ```r2 as plaintext -> flat <pre><code class="language-r2">
+  for (const code of document.querySelectorAll('code.language-r2')) {
     code.innerHTML = escHtml(code.textContent).replace(R2_RE, (m, ...g) => {
       const i = g.findIndex((x) => x !== undefined);
       return i < 0 ? m : `<span class="${R2_CLS[i]}">${m}</span>`;
@@ -84,7 +85,7 @@
 
   /* ---- Code blocks: line numbers that wrap with their line ------------- */
 
-  for (const code of document.querySelectorAll('.highlight > pre.highlight > code')) {
+  for (const code of document.querySelectorAll('.content pre > code')) {
     const html = code.innerHTML.replace(/\n$/, '');
     const lines = html.split('\n');
     const grid = document.createElement('div');
@@ -100,7 +101,7 @@
       grid.append(num, src);
     });
     code.replaceChildren(grid);
-    code.closest('.highlight').classList.add('has-linenos');
+    code.closest('pre').classList.add('has-linenos');
   }
 
   /* ---- Scroll to top --------------------------------------------------- */

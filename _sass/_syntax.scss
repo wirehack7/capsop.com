@@ -18,8 +18,8 @@ pre.highlight {
     color: var(--code-fg);
 }
 
-/* plain indented code (no language) */
-pre:not(.highlight) {
+/* plain <pre><code> (indented code, or a language rouge can't lex, e.g. r2) */
+.content pre:not(.highlight) {
     background: var(--code-block-bg);
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -27,8 +27,8 @@ pre:not(.highlight) {
     color: var(--code-fg);
 }
 
-/* client-side line numbers */
-.highlight.has-linenos pre.highlight {
+/* client-side line numbers (site.js adds .has-linenos to the <pre>) */
+.content pre.has-linenos {
     padding: 12px 0;
     overflow-x: hidden;
 }
@@ -55,7 +55,8 @@ pre:not(.highlight) {
     tab-size: 4;
 }
 
-.highlight {
+.highlight,
+code.language-r2 {
     .c, .ch, .cd, .cm, .cp, .cpf, .c1, .cs { color: var(--code-com); font-style: italic; }
     .k, .kc, .kd, .kn, .kp, .kr, .kt      { color: var(--code-kw); }
     .o, .ow                                { color: var(--code-op); }
