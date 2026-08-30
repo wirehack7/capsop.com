@@ -32,6 +32,15 @@
 (function () {
   function track(name, data) { if (window.umami) window.umami.track(name, data); }
 
+  // Dark-mode toggle (delegated: button is rendered later in <body>)
+  document.addEventListener('click', function (e) {
+    if (!(e.target.closest && e.target.closest('#theme-toggle'))) return;
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (err) {}
+    track('theme-toggle', { mode: next });
+  });
+
   // Session property: screen size (waits for umami to load)
   (function () {
     var props = { screen_size: screen.width + 'x' + screen.height };

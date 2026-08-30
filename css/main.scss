@@ -7,12 +7,31 @@ sitemap: false
 @charset "utf-8";
 
 /* =Colors */
-$dorian: #F5F5F5;
-$iron: #333333;
-$cloudy: #828282;
+$dorian: var(--bg);
+$iron: var(--text);
+$cloudy: var(--muted);
+
+@import "mixins";
+
+:root {
+    --bg: #F5F5F5;
+    --text: #333333;
+    --muted: #828282;
+    --code-bg: #e6e6e6;
+    --border: #cccccc;
+    --rule: #DBDBDB;
+    color-scheme: light;
+}
+
+/* No-JS / pre-paint fallback: honour the visitor's OS setting */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { @include dark-vars(); }
+}
+
+/* Explicit choice from the toggle (set by the no-flash script in <head>) */
+:root[data-theme="dark"] { @include dark-vars(); }
 
 @import
-    "mixins",
     "default",
     "404"
 ;
