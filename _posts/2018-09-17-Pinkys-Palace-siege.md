@@ -12,17 +12,11 @@ categories: [itsec, English, CTF, vulnhub]
 I want to write about [this VM](https://www.vulnhub.com/entry/pinkys-palace-v2,229/) because, for me, it was one of the best I ever resolved. Really nice way to make your way through it. Also it isn't that easy, containing flaws from false programmed programs you have to mention.
 Let's start.
 
-<br />
-
 Note: You have to change your `/etc/hosts` file according VulnHub:
 
 `echo 192.168.x.x pinkydb | sudo tee -a /etc/hosts`
 
 {% toc %}
-
-<br />
-
-<br />
 
 ## Enumeration
 
