@@ -7,7 +7,7 @@ categories: [itsec, English, reversing, crackmes]
 
 After I revived the blog I said I want to write about the stuff I encounter. So here is the first real one.
 
-On [crackmes.one](https://crackmes.one/) I picked [WeeperVM - Level 1](https://crackmes.one/crackme/67f9bdc38f555589f3530a85) by *Ben_Lolo*. It's rated *very hard* (5.0) and the description promised a lot:
+On [crackmes.one](https://crackmes.one/) I picked [WeeperVM - Level 1](https://crackmes.one/crackme/67f9bdc38f555589f3530a85) by *Ben\_Lolo*. It's rated *very hard* (5.0) and the description promised a lot:
 
 > * Encrypted strings
 > * Anti-debug
@@ -174,30 +174,30 @@ The step function `fcn.11a28` decodes one word `W`. Every word is stored xored w
 
 Byte 2 of `D` is always zero afterwards, so it is a cheap tamper check, flip a code byte and the decode goes wrong. The fields:
 
-| field | bits of D | meaning |
-|-------|-----------|---------|
-| OP  | 31..28 | opcode (0..15) |
-| S   | 27     | dest: `0` = `reg[Dop]`, `1` = `mem[Dop]` |
-| C   | 26..25 | src: `0` = `reg[R8]`, `1` = `mem[R8]`, `2` = immediate `R8` |
-| Dop | 15..8  | dest operand |
-| R8  | 7..0   | src operand |
+| field | bits of D | meaning                                                     |
+| ----- | --------- | ----------------------------------------------------------- |
+| OP    | 31..28    | opcode (0..15)                                              |
+| S     | 27        | dest: `0` = `reg[Dop]`, `1` = `mem[Dop]`                    |
+| C     | 26..25    | src: `0` = `reg[R8]`, `1` = `mem[R8]`, `2` = immediate `R8` |
+| Dop   | 15..8     | dest operand                                                |
+| R8    | 7..0      | src operand                                                 |
 
 State is `mem` (the 256 bytes of `.lotus`), a register file at `0x13080` (`reg[i] = dword [0x13080 + i*4]`), the flags byte at `0x13060` and the PC at `0x13040`. Walking the 16 handlers off the jump table at `0x11e68`:
 
-| OP | name | effect |
-|----|------|--------|
-| 0 | MOV | dst = src |
-| 1 | MOVP | `S=0`: `reg[Dop] = mem[src]`  ·  `S=1`: `mem[mem[Dop]] = src` |
-| 2 | ADD | dst += src |
-| 3 | SUB | dst -= src |
-| 4 | MUL | dst *= src |
-| 5 | MOD | dst %= src |
-| 6 | PRINT | write the low byte of dst, `src` times |
-| 7 | READ | read up to `src` bytes of stdin into `mem[Dop]`, stop at `\n` |
-| 8 | - | invalid, step returns 1, aborts |
-| 9 | CMP | flags: b0 eq, b1 dst>src, b2 dst<src, b6 always 1, b5 "input too long" |
-| 10 | JMPC | `if (flags & src): PC = (S ? mem[Dop] : reg[Dop]) - 1` |
-| 11..15 | AND OR XOR SHL SHR | dst op= src |
+| OP     | name               | effect                                                                  |
+| ------ | ------------------ | ----------------------------------------------------------------------- |
+| 0      | MOV                | dst = src                                                               |
+| 1      | MOVP               | `S=0`: `reg[Dop] = mem[src]`  ·  `S=1`: `mem[mem[Dop]] = src`           |
+| 2      | ADD                | dst += src                                                              |
+| 3      | SUB                | dst -= src                                                              |
+| 4      | MUL                | dst \*= src                                                             |
+| 5      | MOD                | dst %= src                                                              |
+| 6      | PRINT              | write the low byte of dst, `src` times                                  |
+| 7      | READ               | read up to `src` bytes of stdin into `mem[Dop]`, stop at `\n`           |
+| 8      | -                  | invalid, step returns 1, aborts                                         |
+| 9      | CMP                | flags: b0 eq, b1 dst>src, b2 dst\<src, b6 always 1, b5 "input too long" |
+| 10     | JMPC               | `if (flags & src): PC = (S ? mem[Dop] : reg[Dop]) - 1`                  |
+| 11..15 | AND OR XOR SHL SHR | dst op= src                                                             |
 
 `reg[14]` and `reg[15]` are only ever scratch jump targets, every `MOV r14,#255 ; ADD r14,#k` cluster in the bytecode is just computing a branch address for the next `JMPC`.
 
@@ -477,4 +477,10 @@ Read as english it is *"(vengeance is an idiots game)"* in leet. Make of that wh
 
 This was hard, but the good kind of hard. The five protections sound intimidating on the crackme page and they are actually implemented properly, but the moment you decide to work static and rebuild the check offline they all turn into dead weight, none of them ever fires. Most of the time went into the VM decode and into getting the Feistel iteration order exactly right, off by one half swap and nothing matches.
 
-Nice challenge. Thanks Ben_Lolo. Onto Level 2, I guess.
+Nice challenge. Thanks Ben\_Lolo. Onto Level 2, I guess.
+
+<br />
+
+<br />
+
+![1.00](https://img.capsop.com/i/38da9536e66ce2ce.jpg)
