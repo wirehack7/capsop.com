@@ -3,6 +3,7 @@ layout: post
 title: Speaking the sacred phrase
 subtitle: Reversing the WeeperVM crackme without a debugger
 categories: [itsec, English, reversing, crackmes]
+date: 2026-08-31 21:24
 ---
 
 After I revived the blog I said I want to write about the stuff I encounter. So here is the first real one.
