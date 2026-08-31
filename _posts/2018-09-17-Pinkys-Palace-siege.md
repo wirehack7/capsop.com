@@ -18,8 +18,7 @@ Note: You have to change your `/etc/hosts` file according VulnHub:
 
 `echo 192.168.x.x pinkydb | sudo tee -a /etc/hosts`
 
-* Will be replaced with the ToC, excluding the "Contents" header
-  {:toc}
+{% toc %}
 
 <br />
 
