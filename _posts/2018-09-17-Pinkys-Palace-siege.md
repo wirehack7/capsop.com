@@ -348,7 +348,7 @@ Thankfully not stripped :grin:. We see where main() starts, imports, strings, in
 
 Here is main:
 
-```
+```r2
 
             ;-- main:
 ┌ (fcn) sym.main 307
@@ -452,7 +452,7 @@ So what it does?
 
 First it checks if arguments are given, if not, a usage help is printed and the program exists. Otherwise it asks for a password then. Let's see what the password is.
 
-```
+```r2
 0x00000ad1      488d3dc30100.  rdi = str.TERM              ; 0xc9b ; "TERM" ; const char *name
 0x00000ad8      e873fdffff     sym.imp.getenv ()           ; char *getenv(const char *name)
 0x00000add      488945f8       qword [s2] = rax
@@ -483,7 +483,7 @@ First it checks if arguments are given, if not, a usage help is printed and the 
 
 Checking if the password string is bigger than 40 (0x28 is hexadecimal, decimal is 40) chars. If yes, exit. If no, continue.
 
-```
+```r2
 │       └─> 0x00000b32      488b55f8       rdx = qword [s2]
 │           0x00000b36      488d45b0       rax = [s1]
 │           0x00000b3a      4889d6         rsi = rdx                   ; const char *s2
@@ -510,7 +510,7 @@ I will skip the `uid` and `gid` part as it just sets the group and user id for t
 
 It calls the function `sym.send` then.
 
-```
+```r2
 ┌ (fcn) sym.send 55
 │   sym.send (int arg1);
 │           ; var int local_18h @ rbp-0x18
@@ -923,7 +923,7 @@ The binary creates a TCP server and listens for connections (the port is 31337, 
 
 I see that a buffer is created for the input:
 
-```
+```r2
 0x00400b39      b900000000     ecx = 0
 0x00400b3e      ba00100000     edx = 0x1000
 0x00400b43      89c7           edi = eax
